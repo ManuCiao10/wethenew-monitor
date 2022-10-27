@@ -3,13 +3,16 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	// "io/ioutil"
 	"log"
-	"net/http"
+	"time"
 
 	// "os"
 	// "strings"
 
 	// "github.com/gofiber/fiber/v2"
+	http "github.com/bogdanfinn/fhttp"
+	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/joho/godotenv"
 )
 
@@ -35,9 +38,16 @@ func init() {
 	}
 }
 
-func Login_init() {
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://sell.wethenew.com/sell-now", nil)
+func timer(name string) func() {
+	start := time.Now()
+	return func() {
+		fmt.Printf("%s took %v\n", name, time.Since(start))
+	}
+}
+
+func Login_init(client tls_client.HttpClient) {
+	url := "https://sell.wethenew.com/sell-now"
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -56,22 +66,35 @@ func Login_init() {
 	req.Header.Set("sec-fetch-user", "?1")
 	req.Header.Set("upgrade-insecure-requests", "1")
 	req.Header.Set("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36")
-	resp, err := client.Do(req)
+	response, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer resp.Body.Close()
-	bodyText, err := ioutil.ReadAll(resp.Body)
+	defer response.Body.Close()
+	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%s\n", bodyText)
-	fmt.Println(resp.StatusCode)
+	fmt.Println(string(body))
+	fmt.Println(response.StatusCode)
 
 }
 
 func main() {
-	Login_init()
+	defer timer("main")()
+	options := []tls_client.HttpClientOption{
+		tls_client.WithTimeout(7),
+		tls_client.WithClientProfile(tls_client.Chrome_105),
+		tls_client.WithInsecureSkipVerify(),
+		// tls_client.WithNotFollowRedirects(),
+		//tls_client.WithProxyUrl("http://user:pass@host:ip"),
+		// tls_client.WithCookieJar(cJar), // create cookieJar instance and pass it as argument
+	}
+	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
+	if err != nil {
+		log.Fatal(err)
+	}
+	Login_init(client)
 	// app := fiber.New()
 	// login := Login{
 	// 	Token:    os.Getenv("TOKEN"),
@@ -82,3 +105,6 @@ func main() {
 }
 
 //add proxies
+//parse the html 
+//save data and create a for loop 
+//check only new data at index 0
