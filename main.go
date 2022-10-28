@@ -76,9 +76,9 @@ func Login_init(client tls_client.HttpClient) {
 	discord.Webhook(result)
 
 	// fmt.Println(PrettyPrint(result))
-	for _, rec := range result.Results {
-		fmt.Println(rec.Name)
-	}
+	// for _, rec := range result.Results {
+	// 	fmt.Println(rec.Name)
+	// }
 
 
 }
