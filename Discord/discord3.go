@@ -1,6 +1,20 @@
 package discord
 
-import "fmt"
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"net/http/cookiejar"
+	"os"
+)
+
+var cookieJar, _ = cookiejar.New(nil)
+
+var client = &http.Client{
+	Jar: cookieJar,
+}
 
 func Webhook(results any) {
 	type Author struct {
@@ -71,5 +85,23 @@ func Webhook(results any) {
 			},
 		},
 	}
-	fmt.Printf("%+v", payload)
+	payloadBuf := new(bytes.Buffer)
+	_ = json.NewEncoder(payloadBuf).Encode(payload)
+	webhookURL := os.Getenv("DISCORD_WEBHOOK_URL")
+	if webhookURL == ""{
+		panic("SET DISCORD_WEBHOOK_URL ENV VAR")
+	}
+	SendWebhook, err := http.NewRequest("POST", webhookURL, payloadBuf)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	SendWebhook.Header.Set("content-type", "application/json")
+
+	sendWebhookRes, err := client.Do(SendWebhook)
+	//resp, _ := ioutil.ReadAll(sendWebhookRes.Body)
+	_ = sendWebhookRes.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
 }

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"main/discord"
+	// "main/discord"
 	"time"
 
 	http "github.com/bogdanfinn/fhttp"
@@ -88,7 +88,7 @@ func Login_init(client tls_client.HttpClient) {
 	if err := json.Unmarshal(body, &result); err != nil { // Parse []byte to the go struct pointer
 		fmt.Println("Can not unmarshal JSON")
 	}
-	discord.Webhook(&result)
+	// discord.Webhook(&result)
 
 	// fmt.Println(PrettyPrint(result))
 	for _, rec := range result.Results {
@@ -129,8 +129,8 @@ func main() {
 
 }
 
+//add begugging memory leaks and impore code
 //add proxies
-//parse the html
 //save data and create a for loop
 //check only new data at index 0
 //check cache to do not do more requests
@@ -166,3 +166,6 @@ func main() {
 // 	fmt.Println(doc.Find("name").Text())
 //     title := doc.Find("price").Text()
 //     fmt.Println(title)
+
+//----------DEBUGGING----------------
+//go build -gcflags="-m" main.go
