@@ -99,7 +99,7 @@ func Webhook(class Info) {
 					},
 				},
 				Thumbnail: Thumbnail{
-					URL: fmt.Sprintf("https:%s", class.Results[0].Image),
+					URL: class.Results[0].Image,
 				},
 				Footer: Footer{
 					Text: "PyroPreme",
@@ -107,9 +107,13 @@ func Webhook(class Info) {
 			},
 		},
 	}
+	fmt.Println(payload)
 	payloadBuf := new(bytes.Buffer)
 	_ = json.NewEncoder(payloadBuf).Encode(payload)
+
 	webhookURL := os.Getenv("DISCORD_WEBHOOK_URL")
+
+	fmt.Println(webhookURL)
 	if webhookURL == "" {
 		panic("SET DISCORD_WEBHOOK_URL ENV VAR")
 	}
@@ -117,12 +121,14 @@ func Webhook(class Info) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	SendWebhook.Header.Set("content-type", "application/json")
 
 	sendWebhookRes, err := client.Do(SendWebhook)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if(sendWebhookRes.StatusCode != 204) {
+		log.Fatal("Webhook failed to send")
 	}
 	defer sendWebhookRes.Body.Close()
 }

@@ -118,6 +118,7 @@ func main() {
 //check only new data at index 0
 //check cache to do not do more requests
 //check if cookies expired or try to do the login
+//add loggers to errors
 
 //url := "https://sell.wethenew.com/sell-now"
 // 	req, err := http.NewRequest("GET", url, nil)
