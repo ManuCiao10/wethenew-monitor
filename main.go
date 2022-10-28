@@ -74,7 +74,8 @@ func Login_init(client tls_client.HttpClient) {
 		fmt.Println("Can not unmarshal JSON")
 	}
 	discord.Webhook(result)
-
+	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
+	//---If is new send a webhook----//
 	// fmt.Println(PrettyPrint(result))
 	// for _, rec := range result.Results {
 	// 	fmt.Println(rec.Name)
