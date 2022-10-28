@@ -121,8 +121,8 @@ func Webhook(class Info) {
 	SendWebhook.Header.Set("content-type", "application/json")
 
 	sendWebhookRes, err := client.Do(SendWebhook)
-	_ = sendWebhookRes.Body.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer sendWebhookRes.Body.Close()
 }
