@@ -83,14 +83,10 @@ func Webhook(class Info) {
 				Fields: []Fields{
 					{
 						Name: "Sizes",
-						Value: "[" + class.Results[0].SellNows[0].Size + "]" + "(" + fmt.Sprintf("https://sell.wethenew.com/sell-now/%d", class.Results[0].SellNows[0].ID) + ")",
+						Value: "[" + class.Results[0].SellNows[0].Size + " | " + strconv.Itoa(class.Results[0].SellNows[0].Price) + " €" + "]" + "(" + fmt.Sprintf("https://sell.wethenew.com/sell-now/%d?holding-Lab", class.Results[0].SellNows[0].ID) + ")",
 						Inline: true,
 					},
-					{
-						Name:   "Payout",
-						Value:  strconv.Itoa(class.Results[0].SellNows[0].Price) + " €",
-						Inline: true,
-					},
+
 
 				},
 
