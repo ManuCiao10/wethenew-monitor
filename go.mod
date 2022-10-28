@@ -6,9 +6,9 @@ require github.com/bogdanfinn/fhttp v0.5.6
 
 require (
 	github.com/bogdanfinn/utls v0.5.7 // indirect
-	golang.org/x/crypto v0.0.0-20220518034528-6f7dac969898 // indirect
-	golang.org/x/net v0.0.0-20220906165146-f3363e06e74c // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/crypto v0.1.0 // indirect
+	golang.org/x/net v0.1.0 // indirect
+	golang.org/x/text v0.4.0 // indirect
 )
 
 require (
