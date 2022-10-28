@@ -105,7 +105,6 @@ func main() {
 //add begugging memory leaks and impore code
 //add proxies
 //save data and create a for loop
-//check only new data at index 0
 //check cache to do not do more requests
 //check if cookies expired or try to do the login
 //add loggers to errors
