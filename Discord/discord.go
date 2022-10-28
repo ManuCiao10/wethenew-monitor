@@ -60,6 +60,7 @@ type Info struct {
 	Results []struct {
 		Name     string `json:"name"`
 		Image    string `json:"image"`
+		ProductType string `json:"productType"`
 		SellNows []struct {
 			ID    int    `json:"id"`
 			Size  string `json:"size"`
@@ -76,30 +77,28 @@ func Webhook(class Info) {
 		Content:   "",
 		Embeds: []Embeds{
 			{
-				Title:       class.Results[0].Name,
+				Title: class.Results[0].Name,
 				// Description: "Sell Now",
-				Color : 2895667,
-	
+				Color: 2895667,
 				Fields: []Fields{
 					{
-						Name: "Sizes",
-						Value: "[" + class.Results[0].SellNows[0].Size + " | " + strconv.Itoa(class.Results[0].SellNows[0].Price) + " €" + "]" + "(" + fmt.Sprintf("https://sell.wethenew.com/sell-now/%d?holding-Lab", class.Results[0].SellNows[0].ID) + ")",
+						Name:   "ProductType",
+						Value:  class.Results[0].ProductType,
 						Inline: true,
 					},
-
-
+					{
+						Name:   "Sizes",
+						Value:  "[" + class.Results[0].SellNows[0].Size + " | " + strconv.Itoa(class.Results[0].SellNows[0].Price) + " €" + "]" + "(" + fmt.Sprintf("https://sell.wethenew.com/sell-now/%d?holding-Lab", class.Results[0].SellNows[0].ID) + ")",
+						Inline: true,
+					},
 				},
-
 				Thumbnail: Thumbnail{
 					URL: class.Results[0].Image,
 				},
-
 				Footer: Footer{
 					IconURL: "https://cdn.discordapp.com/attachments/965899789021642752/965899835570016286/DBFF8755-874B-4436-B79A-0C02DDBBEBBA.jpg",
-					Text: "Wethenew | Holding-Lab " + time,
-
+					Text:    "Wethenew | Holding-Lab " + time,
 				},
-
 			},
 		},
 	}
