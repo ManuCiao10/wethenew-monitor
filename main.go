@@ -6,7 +6,6 @@ import (
 	"io"
 	"log"
 	"main/discord"
-	"time"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
@@ -30,13 +29,6 @@ func init() {
 	err := godotenv.Load("config/.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
-	}
-}
-
-func timer(name string) func() {
-	start := time.Now()
-	return func() {
-		fmt.Printf("|%v|\n", time.Since(start))
 	}
 }
 
@@ -84,7 +76,7 @@ func Login_init(client tls_client.HttpClient) {
 }
 
 func main() {
-	defer timer("main")()
+	defer discord.Timer("main")()
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(7),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
