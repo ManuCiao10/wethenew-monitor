@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
-	// "main/discord"
+	"main/discord"
 	"time"
 
 	http "github.com/bogdanfinn/fhttp"
@@ -19,25 +19,11 @@ type Login struct {
 	Password string `json:"Password"`
 }
 
-type Info struct {
-	Results []struct {
-		ID          int    `json:"id"`
-		Brand       string `json:"brand"`
-		Name        string `json:"name"`
-		Image       string `json:"image"`
-		ProductType string `json:"productType"`
-		SellNows    []struct {
-			ID    int    `json:"id"`
-			Size  string `json:"size"`
-			Price int    `json:"price"`
-		} `json:"sellNows"`
-	} `json:"results"`
-	Pagination struct {
-		TotalPages   int `json:"totalPages"`
-		Page         int `json:"page"`
-		ItemsPerPage int `json:"itemsPerPage"`
-		TotalItems   int `json:"totalItems"`
-	} `json:"pagination"`
+// PrettyPrint to print struct in a readable way
+func PrettyPrint(i interface{}) string {
+	s, _ := json.MarshalIndent(i, "", "\t")
+	return string(s)
+
 }
 
 func init() {
@@ -45,7 +31,6 @@ func init() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	fmt.Printf("----WTN----\n")
 }
 
 func timer(name string) func() {
@@ -84,25 +69,23 @@ func Login_init(client tls_client.HttpClient) {
 	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
-	var result Info
+	var result discord.Info
 	if err := json.Unmarshal(body, &result); err != nil { // Parse []byte to the go struct pointer
 		fmt.Println("Can not unmarshal JSON")
 	}
-	// discord.Webhook(&result)
+	discord.Webhook(result)
 
 	// fmt.Println(PrettyPrint(result))
 	for _, rec := range result.Results {
 		fmt.Println(rec.Name)
 	}
 
-}
-
-// PrettyPrint to print struct in a readable way
-func PrettyPrint(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "\t")
-	return string(s)
 
 }
+
+
+
+
 
 func main() {
 	defer timer("main")()
