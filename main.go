@@ -80,12 +80,7 @@ func Login_init(client tls_client.HttpClient) {
 	// 	fmt.Println(rec.Name)
 	// }
 
-
 }
-
-
-
-
 
 func main() {
 	defer timer("main")()
@@ -103,13 +98,6 @@ func main() {
 	}
 	Login_init(client)
 
-	// app := fiber.New()
-	// login := Login{
-	// 	Token:    os.Getenv("TOKEN"),
-	// 	Email:    os.Getenv("EMAIL"),
-	// 	Password: os.Getenv("PASSWORD"),
-	// }
-
 }
 
 //add begugging memory leaks and impore code
@@ -119,6 +107,8 @@ func main() {
 //check cache to do not do more requests
 //check if cookies expired or try to do the login
 //add loggers to errors
+//----------DEBUGGING----------------
+//go build -gcflags="-m" main.go
 
 //url := "https://sell.wethenew.com/sell-now"
 // 	req, err := http.NewRequest("GET", url, nil)
@@ -150,6 +140,12 @@ func main() {
 // 	fmt.Println(doc.Find("name").Text())
 //     title := doc.Find("price").Text()
 //     fmt.Println(title)
-
-//----------DEBUGGING----------------
-//go build -gcflags="-m" main.go
+// app := fiber.New()
+// login := Login{
+// 	Token:    os.Getenv("TOKEN"),
+// if Token == "" {
+// 	panic("SET TOKEN ENV VAR")
+// }
+// 	Email:    os.Getenv("EMAIL"),
+// 	Password: os.Getenv("PASSWORD"),
+// }
