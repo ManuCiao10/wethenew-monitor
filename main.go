@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"time"
 	"main/discord"
+	"time"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
@@ -42,10 +42,10 @@ type Info struct {
 
 func init() {
 	err := godotenv.Load("config/.env")
-
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	fmt.Printf("----WTN----\n")
 }
 
 func timer(name string) func() {
@@ -83,23 +83,24 @@ func Login_init(client tls_client.HttpClient) {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-	body ,_ := io.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	var result Info
-    if err := json.Unmarshal(body, &result); err != nil {  // Parse []byte to the go struct pointer
-        fmt.Println("Can not unmarshal JSON")
-    }
+	if err := json.Unmarshal(body, &result); err != nil { // Parse []byte to the go struct pointer
+		fmt.Println("Can not unmarshal JSON")
+	}
+	discord.Webhook(&result)
+
 	// fmt.Println(PrettyPrint(result))
-    // for _, rec := range result.Results {
-	// 	fmt.Println(rec.Name)
-	// }
+	for _, rec := range result.Results {
+		fmt.Println(rec.Name)
+	}
 
 }
 
 // PrettyPrint to print struct in a readable way
 func PrettyPrint(i interface{}) string {
-    s, _ := json.MarshalIndent(i, "", "\t")
-    return string(s)
-
+	s, _ := json.MarshalIndent(i, "", "\t")
+	return string(s)
 
 }
 
