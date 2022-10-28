@@ -100,6 +100,7 @@ func main() {
 
 }
 
+//----------IMPROVEMENT----------------
 //add begugging memory leaks and impore code
 //add proxies
 //save data and create a for loop
@@ -107,8 +108,12 @@ func main() {
 //check cache to do not do more requests
 //check if cookies expired or try to do the login
 //add loggers to errors
+
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
+
+//----------README----------------
+//add readme with all the commands to run the program
 
 //url := "https://sell.wethenew.com/sell-now"
 // 	req, err := http.NewRequest("GET", url, nil)
