@@ -40,23 +40,23 @@ func Login_init(client tls_client.HttpClient) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	req.Header.Set("authority", "api-sell.wethenew.com")
+	// req.Header.Set("authority", "api-sell.wethenew.com")
 	req.Header.Set("accept", "application/json, text/plain, */*")
 	req.Header.Set("accept-language", "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6,fr;q=0.5")
-	req.Header.Set("authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYW51ZWxlLmFyZGluZ2hpQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImVtYW51ZWxlIiwibGFzdG5hbWUiOiJhcmRpbmdoaSIsImlhdCI6MTY2Njg0Mzg1NywiZXhwIjoxNjcyMDI3ODU3fQ.0ZqIsxYCTiu8n44Nw9M9OFFdF1huH1shBItHsFUlU1g")
-	req.Header.Set("cache-control", "no-cache")
-	req.Header.Set("feature-policy", "microphone 'none'; geolocation 'none'; camera 'none'; payment 'none'; battery 'none'; gyroscope 'none'; accelerometer 'none';")
-	req.Header.Set("origin", "https://sell.wethenew.com")
-	req.Header.Set("pragma", "no-cache")
-	req.Header.Set("referer", "https://sell.wethenew.com/")
-	req.Header.Set("sec-ch-ua", `"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"`)
-	req.Header.Set("sec-ch-ua-mobile", "?0")
-	req.Header.Set("sec-ch-ua-platform", `"macOS"`)
-	req.Header.Set("sec-fetch-dest", "empty")
-	req.Header.Set("sec-fetch-mode", "cors")
-	req.Header.Set("sec-fetch-site", "same-site")
+	// // req.Header.Set("authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYW51ZWxlLmFyZGluZ2hpQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImVtYW51ZWxlIiwibGFzdG5hbWUiOiJhcmRpbmdoaSIsImlhdCI6MTY2Njg0Mzg1NywiZXhwIjoxNjcyMDI3ODU3fQ.0ZqIsxYCTiu8n44Nw9M9OFFdF1huH1shBItHsFUlU1g")
+	// req.Header.Set("cache-control", "no-cache")
+	// req.Header.Set("feature-policy", "microphone 'none'; geolocation 'none'; camera 'none'; payment 'none'; battery 'none'; gyroscope 'none'; accelerometer 'none';")
+	// req.Header.Set("origin", "https://sell.wethenew.com")
+	// req.Header.Set("pragma", "no-cache")
+	// req.Header.Set("referer", "https://sell.wethenew.com/")
+	// req.Header.Set("sec-ch-ua", `"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"`)
+	// req.Header.Set("sec-ch-ua-mobile", "?0")
+	// req.Header.Set("sec-ch-ua-platform", `"macOS"`)
+	// req.Header.Set("sec-fetch-dest", "empty")
+	// req.Header.Set("sec-fetch-mode", "cors")
+	// req.Header.Set("sec-fetch-site", "same-site")
 	req.Header.Set("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36")
-	req.Header.Set("x-xss-protection", "1;mode=block")
+	// req.Header.Set("x-xss-protection", "1;mode=block")
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
@@ -68,7 +68,7 @@ func Login_init(client tls_client.HttpClient) {
 		fmt.Println("Can not unmarshal JSON")
 	}
 	monitor.Check(result) // check if there is a new product
-
+	discord.Webhook(result)
 	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
 	//---If is new send a webhook----//
 	// fmt.Println(PrettyPrint(result))
@@ -103,6 +103,11 @@ func main() {
 //check cache to do not do more requests
 //check if cookies expired or try to do the login
 //add loggers to errors
+//add rotare user-agent
+//imporve headers clean look better
+
+//add an array with all the actual ID numebres and check if there is a new one => send webhook
+//check long polling to get the new products
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
