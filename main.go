@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"main/data"
 	"main/discord"
+	"main/monitor"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
@@ -61,11 +63,12 @@ func Login_init(client tls_client.HttpClient) {
 	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
-	var result discord.Info
+	var result data.Info
 	if err := json.Unmarshal(body, &result); err != nil { // Parse []byte to the go struct pointer
 		fmt.Println("Can not unmarshal JSON")
 	}
-	discord.Webhook(result)
+	monitor.Check(result) // check if there is a new product
+
 	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
 	//---If is new send a webhook----//
 	// fmt.Println(PrettyPrint(result))
