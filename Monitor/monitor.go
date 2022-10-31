@@ -28,6 +28,17 @@ type ID struct {
 	} `json:"results"`
 }
 
+func SaveSlice(class data.Info) []int{
+	var slice []int
+
+	for _, v := range class.Results {
+		for _, v := range v.SellNows {
+			slice = append(slice, v.ID)
+		}
+	}
+	return slice
+}
+
 func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, err := http.NewRequest("GET", url, nil)
@@ -54,14 +65,15 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	if err := json.Unmarshal(body, &new_id); err != nil {
 		log.Fatal(err)
 	}
-	for index, v := range new_id.Results {
-		for j, v2 := range v.SellNows {
-			if v2.ID != class.Results[index].SellNows[j].ID {
-				fmt.Println("New ID: ", v2.ID)
-				//new product found
-				//replace old id with new id
-
-			}
+	Slice := SaveSlice(class) //TRY TO USE THE NEW_ID TO ADD THE FIRST TIME ALL THE PRODUCTS AND AFTER USEA WHILE LOOP OR A TIMER OUT FOR REQUEST
+	for _, v := range new_id.Results {
+		for _, v := range v.SellNows {
+			//check if v.ID is already Slice
+			//if not send a message to discord
+			fmt.Println(v.ID)
+			
+			
 		}
 	}
 }
+

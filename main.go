@@ -93,6 +93,12 @@ func main() {
 
 }
 
+//first iteration u save all the ID in a slice
+//second iteration u check if the ID is in the slice
+//if not u send a webhook and u and only the ID
+//send the webhook with the position of all the shoes
+
+
 //----------IMPROVEMENT----------------
 //add begugging memory leaks and impore code
 //add proxies
