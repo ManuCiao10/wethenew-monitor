@@ -28,7 +28,7 @@ type ID struct {
 	} `json:"results"`
 }
 
-func SaveSlice(class data.Info) []int{
+func SaveSlice(class data.Info) []int {
 	var slice []int
 
 	for _, v := range class.Results {
@@ -37,6 +37,15 @@ func SaveSlice(class data.Info) []int{
 		}
 	}
 	return slice
+}
+
+func Contains(s []int, id int) bool {
+	for _, v := range s {
+		if v == id {
+			return true
+		}
+	}
+	return false
 }
 
 func MonitorProducts(class data.Info, client tls_client.HttpClient) {
@@ -69,11 +78,14 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	for _, v := range new_id.Results {
 		for _, v := range v.SellNows {
 			//check if v.ID is already Slice
-			//if not send a message to discord
-			fmt.Println(v.ID)
-			
-			
+			if !Contains(Slice, v.ID) {
+				fmt.Println("New product added")
+				fmt.Println(v.ID)
+				fmt.Println(v.Size)
+			} else {
+				fmt.Println("No new product added")
+			}
+
 		}
 	}
 }
-
