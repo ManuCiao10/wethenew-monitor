@@ -21,8 +21,8 @@ type Login struct {
 	Password string `json:"Password"`
 }
 
-// PrettyPrint to print struct in a readable way
-func PrettyPrint(i interface{}) string {
+// Printproducts to print struct in a readable way
+func PrintProducts(i interface{}) string {
 	s, _ := json.MarshalIndent(i, "", "\t")
 	return string(s)
 
@@ -35,11 +35,7 @@ func init() {
 	}
 }
 
-func PollHandler() {
-
-}
-
-func Login_init(client tls_client.HttpClient) data.Info {
+func GetProducts(client tls_client.HttpClient) data.Info {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -73,7 +69,7 @@ func main() {
 	defer discord.Timer("main")()
 
 	options := []tls_client.HttpClientOption{
-		tls_client.WithTimeout(7),
+		tls_client.WithTimeout(3),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithInsecureSkipVerify(),
 		// tls_client.WithNotFollowRedirects(),
@@ -84,9 +80,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	products := Login_init(client)
-	monitor.Check(products) // check if there is a new product
-	discord.Webhook(products)
+	products := GetProducts(client)
+	monitor.MonitorProducts(products, client) 
+	// discord.Webhook(products)
 	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
 	//---If is new send a webhook----//
 	// fmt.Println(PrettyPrint(result))

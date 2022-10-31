@@ -15,7 +15,7 @@ require (
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
-	github.com/bogdanfinn/tls-client v0.8.0
+	github.com/bogdanfinn/tls-client v0.8.1
 	github.com/joho/godotenv v1.4.0
 	github.com/klauspost/compress v1.15.12 // indirect
 	golang.org/x/sys v0.1.0 // indirect
