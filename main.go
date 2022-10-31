@@ -2,7 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+
+	// "fmt"
 	"io"
 	"log"
 	"main/data"
@@ -34,15 +35,26 @@ func init() {
 	}
 }
 
-func Login_init(client tls_client.HttpClient) {
-	url :=  "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
-	req, err := http.NewRequest("GET",url, nil)
+func PollHandler() {
+
+}
+
+func Login_init(client tls_client.HttpClient) data.Info {
+	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	req.Header.Set("accept", "application/json, text/plain, */*")
-	req.Header.Set("accept-language", "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6,fr;q=0.5")
-	req.Header.Set("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36")
+	req.Header = http.Header{
+		"Accept":          {"application/json, text/plain, */*"},
+		"accept-language": {"it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6,fr;q=0.5"},
+		"user-agent":      {"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"},
+		http.HeaderOrderKey: {
+			"Accept",
+			"accept-language",
+			"user-agent",
+		},
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
@@ -53,19 +65,13 @@ func Login_init(client tls_client.HttpClient) {
 	if err := json.Unmarshal(body, &result); err != nil { // Parse []byte to the go struct pointer
 		log.Panic("Can not unmarshal JSON")
 	}
-	monitor.Check(result) // check if there is a new product
-	discord.Webhook(result)
-	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
-	//---If is new send a webhook----//
-	// fmt.Println(PrettyPrint(result))
-	// for _, rec := range result.Results {
-	// 	fmt.Println(rec.Name)
-	// }
+	return result
 
 }
 
 func main() {
 	defer discord.Timer("main")()
+
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(7),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
@@ -78,7 +84,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	Login_init(client)
+	products := Login_init(client)
+	monitor.Check(products) // check if there is a new product
+	discord.Webhook(products)
+	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
+	//---If is new send a webhook----//
+	// fmt.Println(PrettyPrint(result))
+	// for _, rec := range result.Results {
+	// 	fmt.Println(rec.Name)
+	// }
 
 }
 
@@ -90,7 +104,6 @@ func main() {
 //check if cookies expired or try to do the login
 //add loggers to errors
 //add rotare user-agent
-//imporve headers clean look better
 
 //add an array with all the actual ID numebres and check if there is a new one => send webhook
 //check long polling to get the new products
@@ -106,7 +119,6 @@ func main() {
 //2.polling until new products
 //3.check if there is a new product
 //4.send webhook
-
 
 //----------NOTES----------------
 //

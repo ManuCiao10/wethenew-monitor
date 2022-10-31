@@ -6,6 +6,8 @@ require github.com/bogdanfinn/fhttp v0.5.6
 
 require (
 	github.com/bogdanfinn/utls v0.5.7 // indirect
+	github.com/gofrs/uuid v4.0.0+incompatible // indirect
+	github.com/jcuga/golongpoll v1.3.0 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/net v0.1.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
