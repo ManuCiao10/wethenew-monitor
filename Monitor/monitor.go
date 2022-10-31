@@ -50,40 +50,18 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
-	//try to add only the ID products
 	var new_id ID
-	if err := json.Unmarshal(body, &new_id); err != nil { // Parse []byte to the go struct pointer
+	if err := json.Unmarshal(body, &new_id); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(new_id.Results[3].SellNows[0].ID)
-	// if new_id.New_ID != class.ID {
-	// 	log.Println("New product added!")
-	// }
+	for index, v := range new_id.Results {
+		for j, v2 := range v.SellNows {
+			if v2.ID != class.Results[index].SellNows[j].ID {
+				fmt.Println("New ID: ", v2.ID)
+				//new product found
+				//replace old id with new id
 
-	// for _, product := range class.Results {
-	// 	for _, sellNow := range product.SellNows {
-	// 		if new_id.New_ID != sellNow.ID {
-	// 			log.Println("New product added!")
-	// 		}
-	// 	}
-	// }
+			}
+		}
+	}
 }
-
-
-// func MonitorProducts(class data.Info) {
-// 	Inventory := make([]int, 50)
-// 	for _, product := range class.Results {
-// 		for _, sellNow := range product.SellNows {
-// 			fmt.Println(sellNow.ID)
-// 			index := FindIndex(Inventory,sellNow.ID)
-// 			if index != -1 {
-// 				Inventory[index] = sellNow.ID
-// 				fmt.Println("New product")
-// 				discord.Webhook()
-// 			}
-
-			
-// 		}
-// 	}
-
-// }
