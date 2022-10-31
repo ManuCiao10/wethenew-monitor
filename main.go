@@ -2,11 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	// "fmt"
-
-	// "fmt"
 	"io"
 	"log"
+
+	// "log"
 	"main/data"
 	"main/discord"
 	"main/monitor"
@@ -14,19 +13,8 @@ import (
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/joho/godotenv"
+	"go.uber.org/zap"
 )
-
-type Login struct {
-	Token    string `json:"token"`
-	Email    string `json:"Email"`
-	Password string `json:"Password"`
-}
-
-func PrintProducts(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "\t")
-	return string(s)
-
-}
 
 func init() {
 	err := godotenv.Load("config/.env")
@@ -58,70 +46,39 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
 	var result data.Info
-	if err := json.Unmarshal(body, &result); err != nil { // Parse []byte to the go struct pointer
+	if err := json.Unmarshal(body, &result); err != nil {
 		log.Panic("Can not unmarshal JSON")
 	}
 	return result
 
-
 }
 
 func main() {
+	logger, _ := zap.NewProduction()
+	defer logger.Sync()
 	defer discord.Timer("main")()
-
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(3),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithInsecureSkipVerify(),
-		// tls_client.WithNotFollowRedirects(),
-		//tls_client.WithProxyUrl("http://user:pass@host:ip"),
-		// tls_client.WithCookieJar(cJar), // create cookieJar instance and pass it as argument
 	}
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal("Can not create client")
 	}
 	products := GetProducts(client)
-	monitor.MonitorProducts(products, client) 
-	// discord.Webhook(products)
-	//---CREATE A LOOP TO GET ALL THE SELL NOWS----//
-	//---If is new send a webhook----//
-	// fmt.Println(PrettyPrint(result))
-	// for _, rec := range result.Results {
-	// 	fmt.Println(rec.Name)
-	// }
+	monitor.MonitorProducts(products, client)
 
 }
-
-//first iteration u save all the ID in a slice
-//second iteration u check if the ID is in the slice
-//if not u send a webhook and u and only the ID
-//send the webhook with the position of all the shoes
-
 
 //----------IMPROVEMENT----------------
 //add begugging memory leaks and impore code
 //add proxies
-//save data and create a for loop
-//check cache to do not do more requests
-//check if cookies expired or try to do the login
 //add loggers to errors
-//add rotare user-agent
-
-//add an array with all the actual ID numebres and check if there is a new one => send webhook
-//check long polling to get the new products
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
 
 //----------README----------------
 //add readme with all the commands to run the program
-
-//----------TODO----------------
-//1.function to save all the data
-//2.polling until new products
-//3.check if there is a new product
-//4.send webhook
-
-//----------NOTES----------------
-//
+//write a software description
