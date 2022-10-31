@@ -1,21 +1,34 @@
 package monitor
 
 import (
+	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"main/data"
 
-	// "main/discord"
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 )
 
+// type ID struct {
+// 	New_ID    int    `json:"id"`
+// }
+
 type ID struct {
-	New_ID    int    `json:"id"`
+	Results []struct {
+		Name        string `json:"name"`
+		Image       string `json:"image"`
+		ProductType string `json:"productType"`
+		SellNows    []struct {
+			ID    int    `json:"id"`
+			Size  string `json:"size"`
+			Price int    `json:"price"`
+		} `json:"sellNows"`
+	} `json:"results"`
 }
 
-func MonitorProducts(products data.Info, client tls_client.HttpClient) {
-	//do another request an dsave ONLY the ID shoes
+func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -37,28 +50,25 @@ func MonitorProducts(products data.Info, client tls_client.HttpClient) {
 	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
-	var ID_new data.Info
+	//try to add only the ID products
+	var new_id ID
+	if err := json.Unmarshal(body, &new_id); err != nil { // Parse []byte to the go struct pointer
+		log.Fatal(err)
+	}
+	fmt.Println(new_id.Results[3].SellNows[0].ID)
+	// if new_id.New_ID != class.ID {
+	// 	log.Println("New product added!")
+	// }
 
-
-	
-	//lopp each ID and check if is not in the struct
-	//if is not in the struct send a webhook
-	//add the new ID to the struct
-	// fmt.Println(products)
-
-	
+	// for _, product := range class.Results {
+	// 	for _, sellNow := range product.SellNows {
+	// 		if new_id.New_ID != sellNow.ID {
+	// 			log.Println("New product added!")
+	// 		}
+	// 	}
+	// }
 }
 
-
-
-// func FindIndex(s []int, e int) int {
-// 	for i, a := range s {
-// 		if a == e {
-// 			return i
-// 		}
-// 	}
-// 	return -1
-// }
 
 // func MonitorProducts(class data.Info) {
 // 	Inventory := make([]int, 50)

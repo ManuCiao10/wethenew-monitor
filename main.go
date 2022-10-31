@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	// "fmt"
 
 	// "fmt"
 	"io"
@@ -21,7 +22,6 @@ type Login struct {
 	Password string `json:"Password"`
 }
 
-// Printproducts to print struct in a readable way
 func PrintProducts(i interface{}) string {
 	s, _ := json.MarshalIndent(i, "", "\t")
 	return string(s)
@@ -62,6 +62,7 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 		log.Panic("Can not unmarshal JSON")
 	}
 	return result
+
 
 }
 
