@@ -4,6 +4,7 @@ import (
 	// "bytes"
 	"encoding/json"
 	"fmt"
+	// "fmt"
 	"io"
 	"log"
 	"main/data"
@@ -41,7 +42,9 @@ func SaveSlice(class data.Info) []int {
 	var slice []int
 
 	for _, v := range class.Results {
-		slice = append(slice, v.ID)
+		if v.ID != 275 {
+			slice = append(slice, v.ID)
+		}
 	}
 	return slice
 }
@@ -183,19 +186,14 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	if err := json.Unmarshal(body, &new_id); err != nil {
 		log.Fatal(err)
 	}
-	// fmt.Printf(new_id.Results[0].Name)
+	//add test removing a ID from the Slice
 	Slice := SaveSlice(class) //TRY TO USE THE NEW_ID TO ADD THE FIRST TIME ALL THE PRODUCTS AND AFTER USEA WHILE LOOP OR A TIMER OUT FOR REQUEST
-	// Slice = append(Slice, 275)
-	// Slice[0] = 275
-	fmt.Print(Slice)
+	
 	for idx, v := range new_id.Results {
-		for _, v := range v.SellNows {
-			fmt.Println(v.ID) // NEED TO FIXXX
-			if Contains(Slice, v.ID) {
-				Slice = append(Slice, v.ID)
-				Webhook(new_id, idx)
-			}
-
+		if !Contains(Slice, v.ID) {
+			Slice = append(Slice, v.ID)
+			Webhook(new_id, idx)
 		}
 	}
+
 }

@@ -22,7 +22,7 @@ func init() {
 	}
 }
 
-func GetProducts(client tls_client.HttpClient) data.Info {
+func GetProducts(c tls_client.HttpClient) data.Info {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -38,7 +38,8 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 			"user-agent",
 		},
 	}
-	resp, err := client.Do(req)
+	resp, err := c.Do(req)
+
 	if err != nil {
 		log.Fatal(err)
 	}
