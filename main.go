@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 
-	// "log"
 	"main/data"
 	"main/discord"
 	"main/monitor"
@@ -75,6 +74,8 @@ func main() {
 //add begugging memory leaks and impore code
 //add proxies
 //add loggers to errors
+//Mapping upcode
+//pass client and data by reference to avoid copy
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
