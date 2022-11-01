@@ -72,6 +72,7 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
+//Void LOOPP MonitorProducts
 //add begugging memory leaks and impore code
 //add proxies
 //add loggers to errors
