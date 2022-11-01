@@ -2,11 +2,12 @@ package monitor
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"main/data"
 	"main/discord"
+	// "fmt"
+	"time"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
@@ -45,6 +46,8 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	Slice := SaveSliceTest(class) //TRY TO USE THE NEW_ID TO ADD THE FIRST TIME ALL THE PRODUCTS AND AFTER USEA WHILE LOOP OR A TIMER OUT FOR REQUEST
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	for {
+		duration := time.Duration(4)*time.Second
+		time.Sleep(duration)
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
 			log.Fatal(err)
@@ -63,24 +66,20 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer resp.Body.Close()
+		
 		body, _ := io.ReadAll(resp.Body)
 		var new_id data.ID
 		if err := json.Unmarshal(body, &new_id); err != nil {
 			log.Fatal(err)
 		}
-		
 		for idx, v := range new_id.Results {
 			if !Contains(Slice, v.ID) {
 				Slice = append(Slice, v.ID)
 				discord.Webhook(new_id, idx)
 				continue
-			} else {
-				fmt.Print("MONITORING", resp.StatusCode)
 			}
+
 		}
-
-	};
-
-
+		
+	}
 }

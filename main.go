@@ -72,12 +72,9 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
-//Void LOOPP MonitorProducts
-//add begugging memory leaks and impore code
+//add begugging memory leaks and improve code
 //add proxies
-//add loggers to errors
 //Mapping upcode
-//pass client and data by reference to avoid copy
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
