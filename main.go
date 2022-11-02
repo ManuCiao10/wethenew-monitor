@@ -64,7 +64,6 @@ func timer(name string) func() {
 }
 
 func main() {
-	defer timer("main")()
 	var pid = os.Getpid()
 	sysInfo, err := pidusage.GetStat(pid)
 	if err != nil {
@@ -73,7 +72,6 @@ func main() {
 	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
-	defer discord.Timer("main")()
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(30),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
@@ -92,6 +90,7 @@ func main() {
 //fix ID unique size
 //restart monioring after crash
 //fix docker
+//add rotare ISP porxies
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go

@@ -85,9 +85,10 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 		}
 
 		body, _ := io.ReadAll(resp.Body)
+		_ = resp.Body.Close()
 		var new_id data.ID
 		if err := json.Unmarshal(body, &new_id); err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
 		}
 		for idx, v := range new_id.Results {
 			if !Contains(Slice, v.ID) {
