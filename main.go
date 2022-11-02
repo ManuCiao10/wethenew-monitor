@@ -67,7 +67,7 @@ func main() {
 	defer logger.Sync()
 	defer discord.Timer("main")()
 	options := []tls_client.HttpClientOption{
-		tls_client.WithTimeout(20),
+		tls_client.WithTimeout(30),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithInsecureSkipVerify(),
 	}
@@ -81,10 +81,9 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
+//fix ID unique size 
 //restart monioring after crash
-//add begugging memory leaks and improve code
-//run in a server / docker
-//send an error webhook message if the response != 200
+//fix docker
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go

@@ -58,13 +58,12 @@ func MonitorPid(pid int) {
 func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 	Slice := SaveSliceTest(class) //TRY TO USE THE NEW_ID TO ADD THE FIRST TIME ALL THE PRODUCTS AND AFTER USEA WHILE LOOP OR A TIMER OUT FOR REQUEST
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
-	var pid = os.Getpid()
+	// var pid = os.Getpid()
 	for {
-		MonitorPid(pid)
-		duration := time.Duration(5) * time.Second
+		// MonitorPid(pid)
+		duration := time.Duration(30) * time.Second
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
-			log.Fatal("HERE")
 			log.Fatal(err)
 
 		}
