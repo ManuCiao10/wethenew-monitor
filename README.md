@@ -6,21 +6,13 @@ _A Go Web Application to srape and monitoring an API_
 
 <h4>- Ability to send a HTTPS request to Wethenew API every seconds(the value is decide by the client)</h4>
 <h4>- Run the web application on Docker</h4>
-<h4>- Send the new scraped items via Webhook message to Discord</h4>
+
+<h4>- Ability to send the new items to the client via Webhook message to Discord</h4>
 <h4>- Comparing the old items with the new-one to send</h4>
-- Items Compaing
+
+
 ```go
-func compareItems(oldItems []Item, newItems []Item) []Item {
-    var items []Item
-    for _, newItem := range newItems {
-        if !containsItem(oldItems, newItem) {
-            items = append(items, newItem)
-        }
-    }
-    return items
-}
-```
-func for idx, v := range new_id.Results {
+for idx, v := range new_id.Results {
     if !Contains(Slice, v.ID) {
         Slice = append(Slice, v.ID)
         discord.Webhook(new_id, idx)
