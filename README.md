@@ -3,14 +3,16 @@
 _A Go Web Application to scrape and monitoring an API_
 
 <h3>The module contains the following Features</h3>
+[You can use numbers for reference-style link definitions][1]
 [HTTPS](https://pkg.go.dev/net/http)
-<h4>- Ability to send a [HTTPS](https://pkg.go.dev/net/http) request to Wethenew API every seconds</h4>
+<h4>- Ability to send a [HTTPS]() request to Wethenew API every seconds</h4>
 <h4>- Supporting TLS client</h4>
 <h4>- Run the web application on Docker</h4>
 
 <h4>- Ability to send the new items to the client via Webhook message to Discord</h4>
 <h4>- Comparing the old items with the new-one to send</h4>
 
+[1]:https://pkg.go.dev/net/http
 
 ```go
 for idx, v := range new_id.Results {
