@@ -46,8 +46,6 @@ go build
 ./wethenew-monitor
 ```
 
-<h3>Installation</h3>
-
 ## Deployment
 
 - Docker

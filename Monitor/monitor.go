@@ -64,8 +64,8 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 		duration := time.Duration(30) * time.Second
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
-			log.Fatal(err)
-
+			fmt.Println(err)
+			continue
 		}
 		req.Header = http.Header{
 			"Accept":          {"application/json, text/plain, */*"},
@@ -80,7 +80,8 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 		time.Sleep(duration)
 		resp, err := client.Do(req)
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
+			continue
 		}
 
 		body, _ := io.ReadAll(resp.Body)

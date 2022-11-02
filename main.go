@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
 	"github.com/ManuCiao10/wethenew-monitor/discord"
@@ -29,7 +30,7 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	req.Header = http.Header{
 		"Accept":          {"application/json, text/plain, */*"},
@@ -43,7 +44,7 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
@@ -55,13 +56,20 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 
 }
 
+func timer(name string) func() {
+	start := time.Now()
+	return func() {
+		fmt.Printf("%s took %v\n", name, time.Since(start))
+	}
+}
+
 func main() {
+	defer timer("main")()
 	var pid = os.Getpid()
 	sysInfo, err := pidusage.GetStat(pid)
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
@@ -81,7 +89,7 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
-//fix ID unique size 
+//fix ID unique size
 //restart monioring after crash
 //fix docker
 
