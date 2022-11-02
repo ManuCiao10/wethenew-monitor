@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/cookiejar"
-	"main/data"
+	"github.com/ManuCiao10/wethenew-monitor/data"
 	"os"
 	"strconv"
 	"time"

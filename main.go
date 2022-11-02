@@ -7,9 +7,9 @@ import (
 	"log"
 	"os"
 
-	"main/data"
-	"main/discord"
-	"main/monitor"
+	"github.com/ManuCiao10/wethenew-monitor/data"
+	"github.com/ManuCiao10/wethenew-monitor/discord"
+	"github.com/ManuCiao10/wethenew-monitor/monitor"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
@@ -23,7 +23,6 @@ func init() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	
 }
 
 func GetProducts(client tls_client.HttpClient) data.Info {
@@ -62,7 +61,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
@@ -78,7 +77,7 @@ func main() {
 	}
 	products := GetProducts(client)
 	monitor.MonitorProducts(products, client)
-	
+
 }
 
 //----------IMPROVEMENT----------------

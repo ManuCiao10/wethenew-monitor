@@ -42,7 +42,15 @@ for idx, v := range new_id.Results {
 
 ## Deployment
 
-If you would like to run this 24/7 off your personal machine I would reccomend using the free credit given with google cloud, and create a server. You can make sure it runs all the time with a npm package named PM2 which will restart if errors or crashes happen.
+[How To Deploy a Go Web Application with Docker](https://semaphoreci.com/community/tutorials/how-to-deploy-a-go-web-application-with-docker)
+
+## Docker
+
+```bash
+docker build -t wethenew-monitor .
+docker run -d -p 8080:8080 wethenew-monitor
+```
+
 
 ## Contributing
 

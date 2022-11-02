@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"main/data"
-	"main/discord"
 	"os"
 	"syscall"
 	"time"
+
+	"github.com/ManuCiao10/wethenew-monitor/data"
+	"github.com/ManuCiao10/wethenew-monitor/discord"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
@@ -44,15 +45,14 @@ func Contains(s []int, id int) bool {
 	return false
 }
 
-
 func MonitorPid(pid int) {
 	process, err := os.FindProcess(int(pid))
-        if err != nil {
-            fmt.Printf("Failed to find process: %s\n", err)
-        } else {
-            err := process.Signal(syscall.Signal(0))
-            fmt.Printf("process.Signal on pid %d returned: %v\n", pid, err)
-        }
+	if err != nil {
+		fmt.Printf("Failed to find process: %s\n", err)
+	} else {
+		err := process.Signal(syscall.Signal(0))
+		fmt.Printf("process.Signal on pid %d returned: %v\n", pid, err)
+	}
 }
 
 func MonitorProducts(class data.Info, client tls_client.HttpClient) {
