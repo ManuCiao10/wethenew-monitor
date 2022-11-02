@@ -23,6 +23,7 @@ func init() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	
 }
 
 func GetProducts(client tls_client.HttpClient) data.Info {
@@ -61,6 +62,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
 	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
@@ -77,7 +79,6 @@ func main() {
 	products := GetProducts(client)
 	monitor.MonitorProducts(products, client)
 	
-
 }
 
 //----------IMPROVEMENT----------------
