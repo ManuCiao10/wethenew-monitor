@@ -1,10 +1,10 @@
 <h2>Open Source Wethenew Monitor Based on GoLang</h2>
 
-_A Go Web Application to srape and monitoring an API_
+_A Go Web Application to scrape and monitoring an API_
 
 <h3>The module contains the following Features</h3>
 
-<h4>- Ability to send a HTTPS request to Wethenew API every seconds(the value is decide by the client)</h4>
+<h4>- Ability to send a [HTTPS](https://pkg.go.dev/net/http) request to Wethenew API every seconds(the value is decide by the client)</h4>
 <h4>- Run the web application on Docker</h4>
 
 <h4>- Ability to send the new items to the client via Webhook message to Discord</h4>
