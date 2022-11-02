@@ -10,7 +10,17 @@ _A Go Web Application to srape and monitoring an API_
 <h4>- Comparing the old items with the new-one to send</h4>
 - Items Compaing
 ```go
-for idx, v := range new_id.Results {
+func compareItems(oldItems []Item, newItems []Item) []Item {
+    var items []Item
+    for _, newItem := range newItems {
+        if !containsItem(oldItems, newItem) {
+            items = append(items, newItem)
+        }
+    }
+    return items
+}
+```
+func for idx, v := range new_id.Results {
     if !Contains(Slice, v.ID) {
         Slice = append(Slice, v.ID)
         discord.Webhook(new_id, idx)
@@ -21,3 +31,4 @@ for idx, v := range new_id.Results {
 <h3>How to use</h3>
 
 <h3>Installation</h3>
+
