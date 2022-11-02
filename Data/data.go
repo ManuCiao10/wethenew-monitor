@@ -1,11 +1,10 @@
 package data
 
-
 //PRODUCT DATA STRUCTURE//
 
 type Info struct {
 	Results []struct {
-		ID          int    `json:"id"`
+		ID int `json:"id"`
 	} `json:"results"`
 }
 

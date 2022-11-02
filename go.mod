@@ -22,5 +22,6 @@ require (
 	github.com/joho/godotenv v1.4.0
 	github.com/klauspost/compress v1.15.12 // indirect
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
+	github.com/struCoder/pidusage v0.2.1
 	golang.org/x/sys v0.1.0 // indirect
 )

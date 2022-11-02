@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
+	"os"
 
 	"main/data"
 	"main/discord"
@@ -12,6 +14,7 @@ import (
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/joho/godotenv"
+	"github.com/struCoder/pidusage"
 	"go.uber.org/zap"
 )
 
@@ -22,7 +25,7 @@ func init() {
 	}
 }
 
-func GetProducts(c tls_client.HttpClient) data.Info {
+func GetProducts(client tls_client.HttpClient) data.Info {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -38,8 +41,7 @@ func GetProducts(c tls_client.HttpClient) data.Info {
 			"user-agent",
 		},
 	}
-	resp, err := c.Do(req)
-
+	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -54,11 +56,17 @@ func GetProducts(c tls_client.HttpClient) data.Info {
 }
 
 func main() {
+	var pid = os.Getpid()
+	sysInfo, err := pidusage.GetStat(pid)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
 	defer discord.Timer("main")()
 	options := []tls_client.HttpClientOption{
-		tls_client.WithTimeout(3),
+		tls_client.WithTimeout(20),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithInsecureSkipVerify(),
 	}
@@ -68,17 +76,18 @@ func main() {
 	}
 	products := GetProducts(client)
 	monitor.MonitorProducts(products, client)
+	
 
 }
 
 //----------IMPROVEMENT----------------
+//restart monioring after crash
 //add begugging memory leaks and improve code
-//add proxies
-//Mapping upcode
+//run in a server / docker
+//send an error webhook message if the response != 200
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
 
 //----------README----------------
-//add readme with all the commands to run the program
 //write a software description

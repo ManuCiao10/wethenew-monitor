@@ -23,7 +23,7 @@ var client = &http.Client{
 } 
 
 func Webhook(new_id data.ID, idx int) {
-	var webhookURL = os.Getenv("DISCORD_WEBHOOK_URL_TEST")
+	var webhookURL = os.Getenv("DISCOORD_HOLDING")
 	n_size := len(new_id.Results[idx].SellNows)
 	var fields []data.Fields
 	for i := 0; i < n_size; i++ {
@@ -33,12 +33,6 @@ func Webhook(new_id data.ID, idx int) {
 			Inline: true,
 		})
 	}
-	// fields = append(fields, Fields{
-	// 	Name:   "Product Type",
-	// 	Value:  new_id.Results[idx].ProductType,
-	// 	Inline: true,
-	// })
-
 	time := time.Now().Format("15:04:05")
 	payload := &data.Top{
 		Username:  "Wethenew Monitor",
