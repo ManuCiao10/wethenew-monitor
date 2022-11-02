@@ -38,6 +38,7 @@ for idx, v := range new_id.Results {
 - Auto-restart the application when the application is crashed
 
 <h3>Usage</h3>
+
 ```bash
 git clone 
 cd wethenew-monitor
@@ -45,12 +46,12 @@ go build
 ./wethenew-monitor
 ```
 
-
 <h3>Installation</h3>
 
 ## Deployment
 
-<h3>Docker</h3>
+- Docker
+
 [Go Web Application with Docker](https://semaphoreci.com/community/tutorials/how-to-deploy-a-go-web-application-with-docker)
 
 ```bash
