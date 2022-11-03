@@ -4,9 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	// "log"
-	"os"
-	"syscall"
 	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
@@ -16,57 +13,21 @@ import (
 	tls_client "github.com/bogdanfinn/tls-client"
 )
 
-func SaveSlice(class data.Info) []int {
-	var slice []int
-
-	for _, v := range class.Results {
-		slice = append(slice, v.ID)
-	}
-	return slice
-}
-
-func SaveSliceTest(class data.Info) []int {
-	var slice []int
-
-	for _, v := range class.Results {
-		if v.ID != 275 {
-			slice = append(slice, v.ID)
-		}
-	}
-	return slice
-}
-
-func Contains(s []int, id int) bool {
-	for _, v := range s {
-		if v == id {
-			return true
-		}
-	}
-	return false
-}
-
-func MonitorPid(pid int) {
-	process, err := os.FindProcess(int(pid))
-	if err != nil {
-		fmt.Printf("Failed to find process: %s\n", err)
-	} else {
-		err := process.Signal(syscall.Signal(0))
-		fmt.Printf("process.Signal on pid %d returned: %v\n", pid, err)
-	}
-}
-
-func MonitorProducts(class data.Info, client tls_client.HttpClient) {
-	// f, err := os.OpenFile("testlogfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	// if err != nil {
-	// 	log.Fatalf("error opening file: %v", err)
-	// }
-	// // defer f.Close()
-
-	// log.SetOutput(f)
-	Slice := SaveSliceTest(class)
+func MonitorProducts(class data.Info) {
+	Slice := discord.SaveSlice(class)
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	for {
-		duration := time.Duration(30) * time.Second
+		options := []tls_client.HttpClientOption{
+			tls_client.WithTimeout(3),
+			tls_client.WithClientProfile(tls_client.Chrome_105),
+			tls_client.WithNotFollowRedirects(),
+			tls_client.WithProxyUrl(discord.GetProxy()),
+		}
+
+		client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
+		if err != nil {
+			fmt.Print(err)
+		}
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
 			fmt.Println(err)
@@ -82,7 +43,7 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 				"user-agent",
 			},
 		}
-		time.Sleep(duration)
+		time.Sleep(time.Duration(10) * time.Second)
 		resp, err := client.Do(req)
 		if err != nil {
 			fmt.Println(err)
@@ -96,7 +57,7 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 			fmt.Println(err)
 		}
 		for idx, v := range new_id.Results {
-			if !Contains(Slice, v.ID) {
+			if !discord.Contains(Slice, v.ID) {
 				Slice = append(Slice, v.ID)
 				discord.Webhook(new_id, idx)
 				continue
@@ -104,3 +65,12 @@ func MonitorProducts(class data.Info, client tls_client.HttpClient) {
 		}
 	}
 }
+
+/*
+f, err := os.OpenFile("Testlogfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Print(err)
+	}
+	defer f.Close()
+	log.SetOutput(f)
+*/

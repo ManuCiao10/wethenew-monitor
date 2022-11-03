@@ -1,18 +1,14 @@
 package main
 
 import (
-	"bufio"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"os"
-	// "os/user"
-	"strings"
-	"sync"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
+	"github.com/ManuCiao10/wethenew-monitor/discord"
 	"github.com/ManuCiao10/wethenew-monitor/monitor"
 
 	http "github.com/bogdanfinn/fhttp"
@@ -20,11 +16,6 @@ import (
 	"github.com/corpix/uarand"
 	"github.com/joho/godotenv"
 	"github.com/struCoder/pidusage"
-	"go.uber.org/zap"
-)
-
-var (
-	mu sync.Mutex
 )
 
 func init() {
@@ -34,7 +25,18 @@ func init() {
 	}
 }
 
-func GetProducts(client tls_client.HttpClient) data.Info {
+func GetProducts() data.Info {
+	options := []tls_client.HttpClientOption{
+		tls_client.WithTimeout(30),
+		tls_client.WithClientProfile(tls_client.Chrome_105),
+		tls_client.WithNotFollowRedirects(),
+		tls_client.WithProxyUrl(discord.GetProxy()),
+	}
+
+	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
+	if err != nil {
+		log.Println(err)
+	}
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, _ := http.NewRequest("GET", url, nil)
 	user_agent := uarand.GetRandom()
@@ -54,60 +56,21 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	// fmt.Println(string(body))
+	fmt.Println(resp.StatusCode)
 	var result data.Info
-	fmt.Println(string(body))
 	if err := json.Unmarshal(body, &result); err != nil {
-		log.Panic("Can not unmarshal JSON => RATE_LIMITED", err)
+		fmt.Printf("Can not unmarshal JSON => RATE_LIMITED", err)
 	}
 	return result
-
-}
-
-func getProxy() string {
-	mu.Lock()
-	file, err := os.Open("proxies2.txt")
-	if err != nil {
-		log.Fatalf("failed opening file: %s", err)
-	}
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	var txtlines []string
-	for scanner.Scan() {
-		txtlines = append(txtlines, scanner.Text())
-	}
-	_ = file.Close()
-	if len(txtlines) == 0 {
-		panic("Please add proxies to proxies.txt")
-	}
-	index := rand.Intn(len(txtlines))
-	mu.Unlock()
-	fmt.Print(txtlines[index])
-	return txtlines[index]
 }
 
 func main() {
 	var pid = os.Getpid()
 	sysInfo, _ := pidusage.GetStat(pid)
-
 	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
-	logger, _ := zap.NewProduction()
-	defer logger.Sync()
-	proxy_string := getProxy()
-	proxy := strings.Split(proxy_string, ":")
-	proxy_url := "http://" + proxy[2] + ":" + proxy[3] + "@" + proxy[0] + ":" + proxy[1]
-	options := []tls_client.HttpClientOption{
-		tls_client.WithTimeout(30),
-		tls_client.WithClientProfile(tls_client.Chrome_105),
-		tls_client.WithInsecureSkipVerify(),
-		tls_client.WithProxyUrl(proxy_url),
-	}
-	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
-	if err != nil {
-		logger.Fatal("Can not create client")
-	}
-	products := GetProducts(client)
-	monitor.MonitorProducts(products, client)
+
+	products := GetProducts()
+	monitor.MonitorProducts(products)
 
 }
 
