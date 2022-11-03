@@ -18,12 +18,12 @@ func MonitorProducts(class data.Info) {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	for {
 		options := []tls_client.HttpClientOption{
-			tls_client.WithTimeout(3),
+			tls_client.WithTimeout(30),
 			tls_client.WithClientProfile(tls_client.Chrome_105),
 			tls_client.WithNotFollowRedirects(),
 			tls_client.WithProxyUrl(discord.GetProxy()),
 		}
-
+		time.Sleep(time.Duration(10) * time.Second)
 		client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 		if err != nil {
 			fmt.Print(err)
@@ -49,6 +49,7 @@ func MonitorProducts(class data.Info) {
 			fmt.Println(err)
 			continue
 		}
+		fmt.Printf("Status code: %d\n", resp.StatusCode)
 
 		body, _ := io.ReadAll(resp.Body)
 		_ = resp.Body.Close()

@@ -59,7 +59,7 @@ func GetProducts() data.Info {
 	fmt.Println(resp.StatusCode)
 	var result data.Info
 	if err := json.Unmarshal(body, &result); err != nil {
-		fmt.Printf("Can not unmarshal JSON => RATE_LIMITED", err)
+		fmt.Println("Can not unmarshal JSON => RATE_LIMITED", err)
 	}
 	return result
 }
@@ -76,10 +76,8 @@ func main() {
 
 //----------IMPROVEMENT----------------
 //Save Logs in a file
-//fix ID unique size
 //restart monioring after crash
 //fix docker
-//add rotare ISP porxies
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go

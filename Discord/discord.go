@@ -3,13 +3,15 @@ package discord
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/cookiejar"
-	"github.com/ManuCiao10/wethenew-monitor/data"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/ManuCiao10/wethenew-monitor/data"
 )
 
 const (
@@ -68,10 +70,10 @@ func Webhook(new_id data.ID, idx int) {
 
 	sendWebhookRes, err := client.Do(SendWebhook)
 	if err != nil {
-		panic(err)
+		fmt.Print(err)
 	}
 	if sendWebhookRes.StatusCode != 204 {
-		log.Fatal("Webhook failed to send")
+		fmt.Printf("Webhook failed with status %d\n", sendWebhookRes.StatusCode)
 	}
 	defer sendWebhookRes.Body.Close()
 }

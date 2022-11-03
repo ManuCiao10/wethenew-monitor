@@ -5,3 +5,4 @@ main
 config/.env
 output.txt
 Data/proxies2.txt
+.DS_Store
