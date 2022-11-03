@@ -4,4 +4,4 @@ vendor/
 main
 config/.env
 output.txt
-proxies2.txt
+Data/proxies2.txt

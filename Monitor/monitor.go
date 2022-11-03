@@ -67,7 +67,7 @@ func MonitorProducts(class data.Info) {
 }
 
 /*
-f, err := os.OpenFile("Testlogfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+f, err := os.OpenFile("LogFile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Print(err)
 	}

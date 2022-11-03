@@ -20,7 +20,7 @@ var (
 
 func GetProxy() string {
 	mu.Lock()
-	file, err := os.Open("proxies2.txt")
+	file, err := os.Open("Data/proxies2.txt")
 	if err != nil {
 		log.Fatalf("failed opening file: %s", err)
 	}
