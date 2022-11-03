@@ -94,27 +94,30 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 
 }
 
-func timer(name string) func() {
-	start := time.Now()
-	return func() {
-		fmt.Printf("%s took %v\n", name, time.Since(start))
-	}
+func getProxy()
+{
+	user := "hgj3x3cas2"
+	password := "0ef2uixpcu"
+	host := 
+	port := 
+
+	user + ":" + password + "@" + host + ":" + port
+
 }
 
 func main() {
 	var pid = os.Getpid()
-	sysInfo, err := pidusage.GetStat(pid)
-	if err != nil {
-		log.Fatal(err)
-	}
+	sysInfo, _ := pidusage.GetStat(pid)
+
 	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
+	
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(30),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithInsecureSkipVerify(),
-		tls_client.WithProxyUrl("http://hgj3x3cas2:0ef2uixpcu@185.91.205.175:5874"),//
+		tls_client.WithProxyUrl("http://" + ),
 
 	}
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
