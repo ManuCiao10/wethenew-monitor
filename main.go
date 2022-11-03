@@ -1,22 +1,36 @@
 package main
 
 import (
-	"encoding/json"
+	"bufio"
+	"io/ioutil"
+	// "io/ioutil"
+	// "strings"
+	// "bytes"
+	// "encoding/json"
 	"fmt"
-	"io"
+	// "io"
+	// "io/ioutil"
 	"log"
+	"math/rand"
+
+	// "net/url"
 	"os"
+	"sync"
 	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
-	"github.com/ManuCiao10/wethenew-monitor/discord"
 	"github.com/ManuCiao10/wethenew-monitor/monitor"
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
+	"github.com/corpix/uarand"
 	"github.com/joho/godotenv"
 	"github.com/struCoder/pidusage"
 	"go.uber.org/zap"
+)
+
+var (
+	mu sync.Mutex
 )
 
 func init() {
@@ -26,16 +40,38 @@ func init() {
 	}
 }
 
+func getProxy() string{
+	mu.Lock()
+	file, err := os.Open("proxies.txt")
+	if err != nil {
+		log.Fatalf("failed opening file: %s", err)
+	}
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	var txtlines []string
+	for scanner.Scan() {
+		txtlines = append(txtlines, scanner.Text())
+	}
+	_ = file.Close()
+
+	if len(txtlines) == 0{
+		panic("Please add proxies to proxies.txt")
+	}
+
+	index := rand.Intn(len(txtlines))
+	mu.Unlock()
+	fmt.Print(txtlines[index])
+	return txtlines[index]
+}
+
 func GetProducts(client tls_client.HttpClient) data.Info {
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		fmt.Println(err)
-	}
+	req, _ := http.NewRequest("GET", url, nil)
+	user_agent := uarand.GetRandom()
 	req.Header = http.Header{
 		"Accept":          {"application/json, text/plain, */*"},
 		"accept-language": {"it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6,fr;q=0.5"},
-		"user-agent":      {"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"},
+		"user-agent":      {user_agent},
 		http.HeaderOrderKey: {
 			"Accept",
 			"accept-language",
@@ -44,14 +80,16 @@ func GetProducts(client tls_client.HttpClient) data.Info {
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-	body, _ := io.ReadAll(resp.Body)
+	body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println(string(body))
 	var result data.Info
-	if err := json.Unmarshal(body, &result); err != nil {
-		log.Panic("Can not unmarshal JSON")
-	}
+	// fmt.Println(string(body))
+	// if err := json.Unmarshal(body, &result); err != nil {
+	// 	log.Panic("Can not unmarshal JSON => RATE_LIMITED", err)
+	// }
 	return result
 
 }
@@ -76,6 +114,8 @@ func main() {
 		tls_client.WithTimeout(30),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithInsecureSkipVerify(),
+		tls_client.WithProxyUrl("http://hgj3x3cas2:0ef2uixpcu@185.91.205.175:5874"),//
+
 	}
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 	if err != nil {
@@ -87,6 +127,7 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
+//Save Logs in a file
 //fix ID unique size
 //restart monioring after crash
 //fix docker
@@ -96,4 +137,3 @@ func main() {
 //go build -gcflags="-m" main.go
 
 //----------README----------------
-//write a software description

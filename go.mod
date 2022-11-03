@@ -9,6 +9,7 @@ require (
 
 require (
 	github.com/bogdanfinn/utls v0.5.7 // indirect
+	github.com/corpix/uarand v0.2.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	golang.org/x/crypto v0.1.0 // indirect

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
+	// "log"
 	"os"
 	"syscall"
 	"time"
@@ -56,11 +56,16 @@ func MonitorPid(pid int) {
 }
 
 func MonitorProducts(class data.Info, client tls_client.HttpClient) {
-	Slice := SaveSliceTest(class) //TRY TO USE THE NEW_ID TO ADD THE FIRST TIME ALL THE PRODUCTS AND AFTER USEA WHILE LOOP OR A TIMER OUT FOR REQUEST
+	// f, err := os.OpenFile("testlogfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	// if err != nil {
+	// 	log.Fatalf("error opening file: %v", err)
+	// }
+	// // defer f.Close()
+
+	// log.SetOutput(f)
+	Slice := SaveSliceTest(class)
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
-	// var pid = os.Getpid()
 	for {
-		// MonitorPid(pid)
 		duration := time.Duration(30) * time.Second
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
