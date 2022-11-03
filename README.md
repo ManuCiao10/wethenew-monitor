@@ -37,15 +37,6 @@ for idx, v := range new_id.Results {
 ```
 - Auto-restart the application when the application is crashed
 
-<h3>Usage</h3>
-
-```bash
-git clone 
-cd wethenew-monitor
-go build
-./wethenew-monitor
-```
-
 ## Deployment
 
 - Docker
@@ -54,7 +45,7 @@ go build
 
 ```bash
 docker build -t wethenew-monitor .
-docker run -d -p 8080:8080 wethenew-monitor
+docker run -it --rm --name my-running-app wethenew-monitor
 ```
 
 
