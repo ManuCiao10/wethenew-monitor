@@ -1,13 +1,14 @@
-FROM golang:1.18-bullseye
+FROM golang:1.19
 
-RUN go install github.com/beego/bee/v2@latest
+WORKDIR /usr/src/app
 
-ENV GO111MODULE=on
-ENV GOFLAGS=-mod=vendor
+# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download && go mod verify
 
-ENV APP_HOME /go/src/monitor
-RUN mkdir -p "$APP_HOME"
+# COPY . .
+COPY . ./
+RUN go build -v -o /usr/local/bin/app 
 
-WORKDIR "$APP_HOME"
-EXPOSE 8010
-CMD ["bee", "run"]
+CMD ["app"]

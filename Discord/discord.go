@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"log"
+	// "log"
 	"net/http"
 	"net/http/cookiejar"
 	"os"

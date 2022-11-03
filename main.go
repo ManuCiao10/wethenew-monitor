@@ -75,6 +75,7 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
+//check and continue always the loop
 //Save Logs in a file
 //restart monioring after crash
 //fix docker
