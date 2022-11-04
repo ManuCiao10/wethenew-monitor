@@ -6,6 +6,7 @@ _A Go Web Application to scrape and monitoring an API_
 
 - Ability to send a [HTTPS](https://pkg.go.dev/net/http) request to Wethenew API every seconds
 - Supporting [TLS](https://tls13.xargs.org/) client
+
 ```go
 
 http "github.com/bogdanfinn/fhttp"
@@ -22,8 +23,6 @@ options := []tls_client.HttpClientOption{
     }
 ```
 
-- Run the web application on Docker
-- Ability to send the new items to the client via Webhook message to Discord
 - Comparing the old items with the new-one to send
 
 ```go
@@ -35,19 +34,43 @@ for idx, v := range new_id.Results {
     }
 }
 ```
+
+- Ability to send the new items to the client via Webhook message to Discord
+
+```go
+payload := &data.Top{
+		Username:  "Wethenew Monitor",
+		AvatarURL: Image_URL,
+		Content:   "",
+		Embeds: []data.Embeds{
+			{
+				Title: new_id.Results[idx].Name,
+				Color:  1999236,
+				Fields: fields,
+				Thumbnail: data.Thumbnail{
+					URL: new_id.Results[idx].Image,
+				},
+				Footer: data.Footer{
+					IconURL: Image_URL,
+					Text:    "Wethenew | Holding-Lab " + time,
+				},
+			},
+		},
+	}
+```
+
 - Auto-restart the application when the application is crashed
 
 ## Deployment
 
-- Docker
+- Run the web application on Docker
 
-[Go Web Application with Docker](https://semaphoreci.com/community/tutorials/how-to-deploy-a-go-web-application-with-docker)
+[Go Web Application with Docker](https://index.docker.io/_/golang)
 
 ```bash
 docker build -t wethenew-monitor .
-docker run -it --rm --name my-running-app wethenew-monitor
+docker run -it --rm --name <app_name> wethenew-monitor
 ```
-
 
 ## Contributing
 
@@ -60,4 +83,3 @@ To contribute follow these steps:
 5. Create the pull request.
 
 Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-

@@ -78,9 +78,6 @@ func main() {
 //check and continue always the loop
 //Save Logs in a file
 //restart monioring after crash
-//fix docker
 
 //----------DEBUGGING----------------
 //go build -gcflags="-m" main.go
-
-//----------README----------------
