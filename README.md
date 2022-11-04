@@ -39,27 +39,27 @@ for idx, v := range new_id.Results {
 
 ```go
 payload := &data.Top{
-		Username:  "Wethenew Monitor",
-		AvatarURL: Image_URL,
-		Content:   "",
-		Embeds: []data.Embeds{
-			{
-				Title: new_id.Results[idx].Name,
-				Color:  1999236,
-				Fields: fields,
-				Thumbnail: data.Thumbnail{
-					URL: new_id.Results[idx].Image,
-				},
-				Footer: data.Footer{
-					IconURL: Image_URL,
-					Text:    "Wethenew | Holding-Lab " + time,
-				},
-			},
+Username:  "Wethenew Monitor",
+AvatarURL: Image_URL,
+Content:   "",
+Embeds: []data.Embeds{
+	{
+		Title: new_id.Results[idx].Name,
+		Color:  1999236,
+		Fields: fields,
+		Thumbnail: data.Thumbnail{
+			URL: new_id.Results[idx].Image,
 		},
-	}
+		Footer: data.Footer{
+			IconURL: Image_URL,
+			Text:    "Wethenew | Holding-Lab " + time,
+		},
+	},
+},
+}
 ```
 
-<h4>Usage</h4>
+## Usage
 
 ```bash
 export DISCOORD_HOLDING="<YOUR_DISCORD_WEBHOOK>"
