@@ -2,8 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 
@@ -25,17 +24,16 @@ func init() {
 	}
 }
 
-func GetProducts() data.Info {
+func GetProducts(f *os.File) data.Info {
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(30),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
 		tls_client.WithNotFollowRedirects(),
 		tls_client.WithProxyUrl(discord.GetProxy()),
 	}
-
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 	if err != nil {
-		log.Println(err)
+		log.Println("Error creating client: ", err)
 	}
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	req, _ := http.NewRequest("GET", url, nil)
@@ -52,31 +50,37 @@ func GetProducts() data.Info {
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Error sending request: ", err)
 	}
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(resp.StatusCode)
+	body, _ := io.ReadAll(resp.Body)
+	log.Print("Response status: ", resp.Status)
 	var result data.Info
 	if err := json.Unmarshal(body, &result); err != nil {
-		fmt.Println("Can not unmarshal JSON => RATE_LIMITED", err)
+		log.Println("Error unmarshalling json: ", err)
 	}
 	return result
 }
 
 func main() {
+	f, err := os.OpenFile("logfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatalf("error opening file: %v", err)
+	}
+	defer f.Close()
+
+	log.SetOutput(f)
+	log.Print("Starting monitor...")
 	var pid = os.Getpid()
 	sysInfo, _ := pidusage.GetStat(pid)
-	fmt.Printf("CPU: %v%%\n", sysInfo.CPU)
+	log.Printf("CPU: %v%%\n", sysInfo.CPU)
 
-	products := GetProducts()
-	monitor.MonitorProducts(products)
+	products := GetProducts(f)
+	monitor.MonitorProducts(products, f)
 
 }
 
 //----------IMPROVEMENT----------------
-//check and continue always the loop
-//Save Logs in a file
 //restart monioring after crash
 
 //----------DEBUGGING----------------

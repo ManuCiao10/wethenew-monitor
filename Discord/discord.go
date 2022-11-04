@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	// "log"
 	"net/http"
 	"net/http/cookiejar"
 	"os"
@@ -60,11 +59,11 @@ func Webhook(new_id data.ID, idx int) {
 	_ = json.NewEncoder(payloadBuf).Encode(payload)
 
 	if webhookURL == "" {
-		panic("SET DISCORD_WEBHOOK_URL ENV VAR")
+		fmt.Println("SET DISCORD_WEBHOOK_URL ENV VAR")
 	}
 	SendWebhook, err := http.NewRequest("POST", webhookURL, payloadBuf)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	SendWebhook.Header.Set("content-type", "application/json")
 

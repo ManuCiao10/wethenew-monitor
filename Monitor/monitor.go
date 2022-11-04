@@ -2,8 +2,9 @@ package monitor
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
+	"log"
+	"os"
 	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
@@ -13,7 +14,7 @@ import (
 	tls_client "github.com/bogdanfinn/tls-client"
 )
 
-func MonitorProducts(class data.Info) {
+func MonitorProducts(class data.Info, f *os.File) {
 	Slice := discord.SaveSlice(class)
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	for {
@@ -26,11 +27,11 @@ func MonitorProducts(class data.Info) {
 		time.Sleep(time.Duration(10) * time.Second)
 		client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 		if err != nil {
-			fmt.Print(err)
+			log.Print(err)
 		}
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
 			continue
 		}
 		req.Header = http.Header{
@@ -46,19 +47,20 @@ func MonitorProducts(class data.Info) {
 		time.Sleep(time.Duration(10) * time.Second)
 		resp, err := client.Do(req)
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
 			continue
 		}
-		fmt.Printf("Status code: %d\n", resp.StatusCode)
+		log.Printf("Status code: %d\n", resp.StatusCode)
 
 		body, _ := io.ReadAll(resp.Body)
 		_ = resp.Body.Close()
 		var new_id data.ID
 		if err := json.Unmarshal(body, &new_id); err != nil {
-			fmt.Println(err)
+			log.Println(err)
 		}
 		for idx, v := range new_id.Results {
 			if !discord.Contains(Slice, v.ID) {
+				log.Print("New product found!")
 				Slice = append(Slice, v.ID)
 				discord.Webhook(new_id, idx)
 				continue
