@@ -59,7 +59,12 @@ payload := &data.Top{
 	}
 ```
 
-- Auto-restart the application when the application is crashed
+<h4>Usage</h4>
+
+```bash
+export DISCOORD_HOLDING="<YOUR_DISCORD_WEBHOOK>"
+run go run main.go
+```
 
 ## Deployment
 
