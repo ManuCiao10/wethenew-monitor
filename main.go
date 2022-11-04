@@ -62,13 +62,13 @@ func GetProducts() data.Info {
 	return result
 }
 
-func CreateFile(){
+func CreateFile() {
 	f, err := os.OpenFile("logfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
 	log.SetOutput(f)
-	
+
 }
 
 func main() {
@@ -83,5 +83,4 @@ func main() {
 }
 
 //----------IMPROVEMENT----------------
-//check how to declare value of type f *os.File in main.go and use it in monitor.go
 //restart monioring after crash

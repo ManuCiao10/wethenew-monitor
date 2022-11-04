@@ -21,7 +21,7 @@ var cookieJar, _ = cookiejar.New(nil)
 
 var client = &http.Client{
 	Jar: cookieJar,
-} 
+}
 
 func Webhook(new_id data.ID, idx int) {
 	var webhookURL = os.Getenv("DISCOORD_HOLDING")
