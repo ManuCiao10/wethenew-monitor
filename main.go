@@ -24,7 +24,7 @@ func init() {
 	}
 }
 
-func GetProducts(f *os.File) data.Info {
+func GetProducts() data.Info {
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeout(30),
 		tls_client.WithClientProfile(tls_client.Chrome_105),
@@ -62,26 +62,26 @@ func GetProducts(f *os.File) data.Info {
 	return result
 }
 
-func main() {
+func CreateFile(){
 	f, err := os.OpenFile("logfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
-	defer f.Close()
-
 	log.SetOutput(f)
+	
+}
+
+func main() {
+	CreateFile()
 	log.Print("Starting monitor...")
 	var pid = os.Getpid()
 	sysInfo, _ := pidusage.GetStat(pid)
 	log.Printf("CPU: %v%%\n", sysInfo.CPU)
-
-	products := GetProducts(f)
-	monitor.MonitorProducts(products, f)
+	products := GetProducts()
+	monitor.MonitorProducts(products)
 
 }
 
 //----------IMPROVEMENT----------------
+//check how to declare value of type f *os.File in main.go and use it in monitor.go
 //restart monioring after crash
-
-//----------DEBUGGING----------------
-//go build -gcflags="-m" main.go

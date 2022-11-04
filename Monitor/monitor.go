@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"log"
-	"os"
+	// "os"
 	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
@@ -14,7 +14,7 @@ import (
 	tls_client "github.com/bogdanfinn/tls-client"
 )
 
-func MonitorProducts(class data.Info, f *os.File) {
+func MonitorProducts(class data.Info) {
 	Slice := discord.SaveSlice(class)
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	for {
@@ -68,12 +68,3 @@ func MonitorProducts(class data.Info, f *os.File) {
 		}
 	}
 }
-
-/*
-f, err := os.OpenFile("LogFile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	if err != nil {
-		fmt.Print(err)
-	}
-	defer f.Close()
-	log.SetOutput(f)
-*/
