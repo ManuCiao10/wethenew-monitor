@@ -10,3 +10,522 @@
 2022/11/03 21:14:03 Starting monitor...
 2022/11/03 21:14:03 CPU: 0%
 2022/11/03 21:14:03 Response status: 200 OK
+2022/11/04 18:10:30 Starting monitor...
+2022/11/04 18:10:30 CPU: 2.7%
+2022/11/04 18:10:30 Response status: 200 OK
+2022/11/04 18:10:35 Starting monitor...
+2022/11/04 18:10:35 CPU: 0%
+2022/11/04 18:10:36 Response status: 200 OK
+2022/11/05 07:19:13 Starting monitor...
+2022/11/05 07:19:13 CPU: 0%
+2022/11/05 07:19:14 Response status: 403 Forbidden
+2022/11/05 07:19:14 Error unmarshalling json:  invalid character '<' looking for beginning of value
+2022/11/05 07:19:34 Status code: 200
+2022/11/05 07:19:34 New product found!
+2022/11/05 07:19:34 New product found!
+2022/11/05 07:19:34 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:35 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:19:36 New product found!
+2022/11/05 07:22:22 Starting monitor...
+2022/11/05 07:22:22 CPU: 0%
+2022/11/05 07:22:22 Response status: 200 OK
+2022/11/05 07:22:33 Status code: 200
+2022/11/05 07:22:43 Status code: 200
+2022/11/05 07:22:54 Status code: 200
+2022/11/05 07:23:04 Status code: 200
+2022/11/05 07:23:15 Status code: 200
+2022/11/05 07:23:25 Status code: 200
+2022/11/05 07:24:27 Starting monitor...
+2022/11/05 07:24:27 CPU: 0%
+2022/11/05 07:24:27 Response status: 200 OK
+2022/11/05 07:24:48 [+] Status code: 200
+2022/11/05 07:25:08 [+] Status code: 200
+2022/11/05 07:25:16 Starting monitor...
+2022/11/05 07:25:16 CPU: 0%
+2022/11/05 07:25:17 Response status: 200 OK
+2022/11/05 07:25:27 [+] Status code: 200
+2022/11/05 07:25:34 Starting monitor...
+2022/11/05 07:25:34 CPU: 0%
+2022/11/05 07:25:35 Response status: 200 OK
+2022/11/05 07:25:35 [+] Status code: 200
+2022/11/05 07:25:36 [+] Status code: 200
+2022/11/05 07:25:36 [+] Status code: 200
+2022/11/05 07:25:37 [+] Status code: 200
+2022/11/05 07:25:37 [+] Status code: 200
+2022/11/05 07:25:38 [+] Status code: 200
+2022/11/05 07:25:38 [+] Status code: 200
+2022/11/05 07:25:38 [+] Status code: 200
+2022/11/05 07:25:39 [+] Status code: 200
+2022/11/05 07:25:39 [+] Status code: 200
+2022/11/05 07:25:40 [+] Status code: 200
+2022/11/05 07:25:40 [+] Status code: 200
+2022/11/05 07:25:41 [+] Status code: 200
+2022/11/05 07:25:41 [+] Status code: 200
+2022/11/05 07:25:42 [+] Status code: 200
+2022/11/05 07:25:42 [+] Status code: 200
+2022/11/05 07:25:43 [+] Status code: 200
+2022/11/05 07:25:43 [+] Status code: 200
+2022/11/05 07:25:44 [+] Status code: 200
+2022/11/05 07:25:44 [+] Status code: 200
+2022/11/05 07:25:45 [+] Status code: 200
+2022/11/05 07:25:45 [+] Status code: 200
+2022/11/05 07:25:46 [+] Status code: 200
+2022/11/05 07:25:46 [+] Status code: 200
+2022/11/05 07:25:46 [+] Status code: 200
+2022/11/05 07:25:47 [+] Status code: 200
+2022/11/05 07:25:47 [+] Status code: 200
+2022/11/05 07:25:48 [+] Status code: 200
+2022/11/05 07:25:48 [+] Status code: 200
+2022/11/05 07:25:49 [+] Status code: 200
+2022/11/05 07:25:49 [+] Status code: 200
+2022/11/05 07:25:50 [+] Status code: 200
+2022/11/05 07:25:50 [+] Status code: 200
+2022/11/05 07:25:51 [+] Status code: 200
+2022/11/05 07:25:51 [+] Status code: 200
+2022/11/05 07:25:52 [+] Status code: 200
+2022/11/05 07:25:52 [+] Status code: 200
+2022/11/05 07:25:53 [+] Status code: 200
+2022/11/05 07:25:53 [+] Status code: 200
+2022/11/05 07:25:54 [+] Status code: 200
+2022/11/05 07:25:54 [+] Status code: 200
+2022/11/05 07:25:55 [+] Status code: 200
+2022/11/05 07:25:55 [+] Status code: 200
+2022/11/05 07:25:56 [+] Status code: 200
+2022/11/05 07:25:56 [+] Status code: 200
+2022/11/05 07:25:57 [+] Status code: 200
+2022/11/05 07:25:57 [+] Status code: 200
+2022/11/05 07:25:58 [+] Status code: 200
+2022/11/05 07:25:58 [+] Status code: 200
+2022/11/05 07:25:59 [+] Status code: 200
+2022/11/05 07:25:59 [+] Status code: 200
+2022/11/05 07:26:00 [+] Status code: 200
+2022/11/05 07:26:00 [+] Status code: 200
+2022/11/05 07:44:32 Starting monitor...
+2022/11/05 07:44:32 CPU: 0%
+2022/11/05 07:44:32 Response status: 200 OK
+2022/11/05 07:44:33 [+] Status code: 200
+2022/11/05 07:44:33 [+] Status code: 200
+2022/11/05 07:44:34 [+] Status code: 200
+2022/11/05 07:44:34 [+] Status code: 200
+2022/11/05 07:44:35 [+] Status code: 200
+2022/11/05 07:44:35 [+] Status code: 200
+2022/11/05 07:44:36 [+] Status code: 200
+2022/11/05 07:44:36 [+] Status code: 200
+2022/11/05 07:44:36 [+] Status code: 200
+2022/11/05 07:44:37 [+] Status code: 200
+2022/11/05 07:44:38 [+] Status code: 200
+2022/11/05 07:44:38 [+] Status code: 200
+2022/11/05 07:44:39 [+] Status code: 200
+2022/11/05 07:44:39 [+] Status code: 200
+2022/11/05 07:44:40 [+] Status code: 200
+2022/11/05 07:44:40 [+] Status code: 200
+2022/11/05 07:44:41 [+] Status code: 200
+2022/11/05 07:44:41 [+] Status code: 200
+2022/11/05 07:44:41 [+] Status code: 200
+2022/11/05 07:44:42 [+] Status code: 200
+2022/11/05 07:44:42 [+] Status code: 200
+2022/11/05 07:44:43 [+] Status code: 200
+2022/11/05 07:44:43 [+] Status code: 200
+2022/11/05 07:44:44 [+] Status code: 200
+2022/11/05 07:44:44 [+] Status code: 200
+2022/11/05 07:44:45 [+] Status code: 200
+2022/11/05 07:44:45 [+] Status code: 200
+2022/11/05 07:44:46 [+] Status code: 200
+2022/11/05 07:44:46 [+] Status code: 200
+2022/11/05 07:44:47 [+] Status code: 200
+2022/11/05 07:44:47 [+] Status code: 200
+2022/11/05 07:44:48 [+] Status code: 200
+2022/11/05 07:44:48 [+] Status code: 200
+2022/11/05 07:44:48 [+] Status code: 200
+2022/11/05 07:44:49 [+] Status code: 200
+2022/11/05 07:44:49 [+] Status code: 200
+2022/11/05 07:44:50 [+] Status code: 200
+2022/11/05 07:44:50 [+] Status code: 200
+2022/11/05 07:44:51 [+] Status code: 200
+2022/11/05 07:44:51 [+] Status code: 200
+2022/11/05 07:44:52 [+] Status code: 200
+2022/11/05 07:44:52 [+] Status code: 200
+2022/11/05 07:44:52 [+] Status code: 200
+2022/11/05 07:44:53 [+] Status code: 200
+2022/11/05 07:44:53 [+] Status code: 200
+2022/11/05 07:44:54 [+] Status code: 200
+2022/11/05 07:44:54 [+] Status code: 200
+2022/11/05 07:44:55 [+] Status code: 200
+2022/11/05 07:44:55 [+] Status code: 200
+2022/11/05 07:44:56 [+] Status code: 200
+2022/11/05 07:44:56 [+] Status code: 200
+2022/11/05 07:44:57 [+] Status code: 200
+2022/11/05 07:44:57 [+] Status code: 200
+2022/11/05 07:44:57 [+] Status code: 200
+2022/11/05 07:44:58 [+] Status code: 200
+2022/11/05 07:44:58 [+] Status code: 200
+2022/11/05 07:44:59 [+] Status code: 200
+2022/11/05 07:44:59 [+] Status code: 200
+2022/11/05 07:45:00 [+] Status code: 200
+2022/11/05 07:45:01 [+] Status code: 200
+2022/11/05 07:45:01 [+] Status code: 200
+2022/11/05 07:45:02 [+] Status code: 200
+2022/11/05 07:45:02 [+] Status code: 200
+2022/11/05 07:45:03 [+] Status code: 200
+2022/11/05 07:45:03 [+] Status code: 200
+2022/11/05 07:45:04 [+] Status code: 200
+2022/11/05 07:45:04 [+] Status code: 200
+2022/11/05 07:45:05 [+] Status code: 200
+2022/11/05 07:45:05 [+] Status code: 200
+2022/11/05 07:45:06 [+] Status code: 200
+2022/11/05 07:45:06 [+] Status code: 200
+2022/11/05 07:45:07 [+] Status code: 200
+2022/11/05 07:45:07 [+] Status code: 200
+2022/11/05 07:45:07 [+] Status code: 200
+2022/11/05 07:45:08 [+] Status code: 200
+2022/11/05 07:45:08 [+] Status code: 200
+2022/11/05 07:45:09 [+] Status code: 200
+2022/11/05 07:45:09 [+] Status code: 200
+2022/11/05 07:45:10 [+] Status code: 200
+2022/11/05 07:45:10 [+] Status code: 200
+2022/11/05 07:45:11 [+] Status code: 200
+2022/11/05 07:45:11 [+] Status code: 200
+2022/11/05 07:45:12 [+] Status code: 200
+2022/11/05 07:45:12 [+] Status code: 200
+2022/11/05 07:45:12 [+] Status code: 200
+2022/11/05 07:45:13 [+] Status code: 200
+2022/11/05 07:45:14 [+] Status code: 200
+2022/11/05 07:45:14 [+] Status code: 200
+2022/11/05 07:45:15 [+] Status code: 200
+2022/11/05 07:45:15 [+] Status code: 200
+2022/11/05 07:45:16 [+] Status code: 200
+2022/11/05 07:45:16 [+] Status code: 200
+2022/11/05 07:45:17 [+] Status code: 200
+2022/11/05 07:45:17 [+] Status code: 200
+2022/11/05 07:45:17 [+] Status code: 200
+2022/11/05 07:45:18 [+] Status code: 200
+2022/11/05 07:45:18 [+] Status code: 200
+2022/11/05 07:45:19 [+] Status code: 200
+2022/11/05 07:45:19 [+] Status code: 200
+2022/11/05 07:45:20 [+] Status code: 200
+2022/11/05 07:45:20 [+] Status code: 200
+2022/11/05 07:45:21 [+] Status code: 200
+2022/11/05 07:45:21 [+] Status code: 200
+2022/11/05 07:45:22 [+] Status code: 200
+2022/11/05 07:45:22 [+] Status code: 200
+2022/11/05 07:45:22 [+] Status code: 200
+2022/11/05 07:45:23 [+] Status code: 200
+2022/11/05 07:45:24 [+] Status code: 200
+2022/11/05 07:45:24 [+] Status code: 200
+2022/11/05 07:45:25 [+] Status code: 200
+2022/11/05 07:45:25 [+] Status code: 200
+2022/11/05 07:45:26 [+] Status code: 200
+2022/11/05 07:45:26 [+] Status code: 200
+2022/11/05 07:45:52 Starting monitor...
+2022/11/05 07:45:52 CPU: 0%
+2022/11/05 07:45:53 Response status: 200 OK
+2022/11/05 07:45:54 [+] Status code: 200
+2022/11/05 07:45:54 [+] Status code: 200
+2022/11/05 07:45:55 [+] Status code: 200
+2022/11/05 07:45:55 [+] Status code: 200
+2022/11/05 07:45:56 [+] Status code: 200
+2022/11/05 07:45:56 [+] Status code: 200
+2022/11/05 07:45:57 [+] Status code: 200
+2022/11/05 07:45:57 [+] Status code: 200
+2022/11/05 07:45:58 [+] Status code: 200
+2022/11/05 07:45:58 [+] Status code: 200
+2022/11/05 07:45:59 [+] Status code: 200
+2022/11/05 07:45:59 [+] Status code: 200
+2022/11/05 07:46:00 [+] Status code: 200
+2022/11/05 07:46:00 [+] Status code: 200
+2022/11/05 07:46:01 [+] Status code: 200
+2022/11/05 07:46:01 [+] Status code: 200
+2022/11/05 07:46:02 [+] Status code: 200
+2022/11/05 07:46:02 [+] Status code: 200
+2022/11/05 07:46:03 [+] Status code: 200
+2022/11/05 07:46:03 [+] Status code: 200
+2022/11/05 07:46:04 [+] Status code: 200
+2022/11/05 07:46:04 [+] Status code: 200
+2022/11/05 07:46:05 [+] Status code: 200
+2022/11/05 07:46:05 [+] Status code: 200
+2022/11/05 07:46:06 [+] Status code: 200
+2022/11/05 07:46:06 [+] Status code: 200
+2022/11/05 07:46:07 [+] Status code: 200
+2022/11/05 07:46:07 [+] Status code: 200
+2022/11/05 07:46:08 [+] Status code: 200
+2022/11/05 07:46:08 [+] Status code: 200
+2022/11/05 07:46:09 [+] Status code: 200
+2022/11/05 07:46:09 [+] Status code: 200
+2022/11/05 07:46:10 [+] Status code: 200
+2022/11/05 07:46:11 [+] Status code: 200
+2022/11/05 07:46:11 [+] Status code: 200
+2022/11/05 07:46:12 [+] Status code: 200
+2022/11/05 07:46:12 [+] Status code: 200
+2022/11/05 07:46:13 [+] Status code: 200
+2022/11/05 07:46:13 [+] Status code: 200
+2022/11/05 07:46:14 [+] Status code: 200
+2022/11/05 07:46:14 [+] Status code: 200
+2022/11/05 07:46:14 [+] Status code: 200
+2022/11/05 07:46:15 [+] Status code: 200
+2022/11/05 07:46:15 [+] Status code: 200
+2022/11/05 07:46:16 [+] Status code: 200
+2022/11/05 07:46:16 [+] Status code: 200
+2022/11/05 07:46:17 [+] Status code: 200
+2022/11/05 07:46:17 [+] Status code: 200
+2022/11/05 07:46:18 [+] Status code: 200
+2022/11/05 07:46:18 [+] Status code: 200
+2022/11/05 07:46:18 [+] Status code: 200
+2022/11/05 07:46:19 [+] Status code: 200
+2022/11/05 07:46:20 [+] Status code: 200
+2022/11/05 07:46:20 [+] Status code: 200
+2022/11/05 07:46:21 [+] Status code: 200
+2022/11/05 07:46:21 [+] Status code: 200
+2022/11/05 07:46:21 [+] Status code: 200
+2022/11/05 07:46:22 [+] Status code: 200
+2022/11/05 07:46:22 [+] Status code: 200
+2022/11/05 07:46:23 [+] Status code: 200
+2022/11/05 07:46:23 [+] Status code: 200
+2022/11/05 07:46:24 [+] Status code: 200
+2022/11/05 07:46:24 [+] Status code: 200
+2022/11/05 07:46:25 [+] Status code: 200
+2022/11/05 07:46:25 [+] Status code: 200
+2022/11/05 07:46:25 [+] Status code: 200
+2022/11/05 07:46:26 [+] Status code: 200
+2022/11/05 07:46:26 [+] Status code: 200
+2022/11/05 07:46:27 [+] Status code: 200
+2022/11/05 07:46:27 [+] Status code: 200
+2022/11/05 07:46:28 [+] Status code: 200
+2022/11/05 07:46:28 [+] Status code: 200
+2022/11/05 07:46:28 [+] Status code: 200
+2022/11/05 07:46:29 [+] Status code: 200
+2022/11/05 07:46:30 [+] Status code: 200
+2022/11/05 07:46:30 [+] Status code: 200
+2022/11/05 07:46:31 [+] Status code: 200
+2022/11/05 07:46:31 [+] Status code: 200
+2022/11/05 07:46:31 [+] Status code: 200
+2022/11/05 07:46:32 [+] Status code: 200
+2022/11/05 07:46:32 [+] Status code: 200
+2022/11/05 07:46:33 [+] Status code: 200
+2022/11/05 07:46:33 [+] Status code: 200
+2022/11/05 07:46:34 [+] Status code: 200
+2022/11/05 07:46:34 [+] Status code: 200
+2022/11/05 07:46:35 [+] Status code: 200
+2022/11/05 07:46:35 [+] Status code: 200
+2022/11/05 07:46:35 [+] Status code: 200
+2022/11/05 07:46:36 [+] Status code: 200
+2022/11/05 07:46:36 [+] Status code: 200
+2022/11/05 07:46:37 [+] Status code: 200
+2022/11/05 07:46:37 [+] Status code: 200
+2022/11/05 07:46:38 [+] Status code: 200
+2022/11/05 07:46:38 Get "https://api-sell.wethenew.com/sell-nows?skip=0&take=50": Proxy responded with non 200 code: 403 Forbidden
+2022/11/05 07:46:38 [+] Status code: 200
+2022/11/05 07:46:39 [+] Status code: 200
+2022/11/05 07:46:39 [+] Status code: 200
+2022/11/05 07:46:40 [+] Status code: 200
+2022/11/05 07:46:40 [+] Status code: 200
+2022/11/05 07:46:41 [+] Status code: 200
+2022/11/05 07:46:41 [+] Status code: 200
+2022/11/05 07:46:42 [+] Status code: 200
+2022/11/05 07:46:42 [+] Status code: 200
+2022/11/05 07:46:43 [+] Status code: 200
+2022/11/05 07:46:43 [+] Status code: 200
+2022/11/05 07:46:43 [+] Status code: 200
+2022/11/05 07:46:44 [+] Status code: 200
+2022/11/05 07:46:44 [+] Status code: 200
+2022/11/05 07:46:45 [+] Status code: 200
+2022/11/05 07:46:45 [+] Status code: 200
+2022/11/05 07:46:46 [+] Status code: 200
+2022/11/05 07:46:46 [+] Status code: 200
+2022/11/05 07:46:47 [+] Status code: 200
+2022/11/05 07:46:47 [+] Status code: 200
+2022/11/05 07:46:48 [+] Status code: 200
+2022/11/05 07:46:48 [+] Status code: 200
+2022/11/05 07:46:49 [+] Status code: 200
+2022/11/05 07:46:49 [+] Status code: 200
+2022/11/05 07:46:50 [+] Status code: 200
+2022/11/05 07:46:50 [+] Status code: 200
+2022/11/05 07:46:51 [+] Status code: 200
+2022/11/05 07:46:51 [+] Status code: 200
+2022/11/05 07:46:52 [+] Status code: 200
+2022/11/05 07:46:52 [+] Status code: 200
+2022/11/05 07:46:53 [+] Status code: 200
+2022/11/05 07:46:53 [+] Status code: 200
+2022/11/05 07:46:53 [+] Status code: 200
+2022/11/05 07:46:54 [+] Status code: 200
+2022/11/05 07:46:54 [+] Status code: 200
+2022/11/05 07:46:55 [+] Status code: 200
+2022/11/05 07:46:55 [+] Status code: 200
+2022/11/05 07:46:56 [+] Status code: 200
+2022/11/05 07:46:56 [+] Status code: 200
+2022/11/05 07:46:57 [+] Status code: 200
+2022/11/05 07:46:57 [+] Status code: 200
+2022/11/05 07:46:57 [+] Status code: 200
+2022/11/05 07:46:58 [+] Status code: 200
+2022/11/05 07:46:58 [+] Status code: 200
+2022/11/05 07:46:59 [+] Status code: 200
+2022/11/05 07:46:59 [+] Status code: 200
+2022/11/05 07:47:00 [+] Status code: 200
+2022/11/05 07:47:01 [+] Status code: 200
+2022/11/05 07:47:01 [+] Status code: 200
+2022/11/05 07:47:02 [+] Status code: 200
+2022/11/05 07:47:02 [+] Status code: 200
+2022/11/05 07:47:03 [+] Status code: 200
+2022/11/05 07:47:03 [+] Status code: 200
+2022/11/05 07:47:03 [+] Status code: 200
+2022/11/05 07:47:04 [+] Status code: 200
+2022/11/05 07:47:04 [+] Status code: 200
+2022/11/05 07:47:05 [+] Status code: 200
+2022/11/05 07:47:05 [+] Status code: 200
+2022/11/05 07:47:06 [+] Status code: 200
+2022/11/05 07:47:06 [+] Status code: 200
+2022/11/05 07:47:07 [+] Status code: 200
+2022/11/05 07:47:07 [+] Status code: 200
+2022/11/05 07:47:08 [+] Status code: 200
+2022/11/05 07:47:08 [+] Status code: 200
+2022/11/05 07:47:09 [+] Status code: 200
+2022/11/05 07:47:09 [+] Status code: 200
+2022/11/05 07:47:10 [+] Status code: 200
+2022/11/05 07:47:10 [+] Status code: 200
+2022/11/05 07:47:11 [+] Status code: 200
+2022/11/05 07:47:11 [+] Status code: 200
+2022/11/05 07:47:12 [+] Status code: 200
+2022/11/05 07:47:12 [+] Status code: 200
+2022/11/05 07:47:12 [+] Status code: 200
+2022/11/05 07:47:13 [+] Status code: 200
+2022/11/05 07:47:13 [+] Status code: 200
+2022/11/05 07:47:14 [+] Status code: 200
+2022/11/05 07:47:14 [+] Status code: 200
+2022/11/05 07:47:15 [+] Status code: 200
+2022/11/05 07:47:15 [+] Status code: 200
+2022/11/05 07:47:16 [+] Status code: 200
+2022/11/05 07:47:16 [+] Status code: 200
+2022/11/05 07:47:17 [+] Status code: 200
+2022/11/05 07:47:17 [+] Status code: 200
+2022/11/05 07:47:17 [+] Status code: 200
+2022/11/05 07:47:18 [+] Status code: 200
+2022/11/05 07:47:18 [+] Status code: 200
+2022/11/05 07:47:19 [+] Status code: 200
+2022/11/05 07:47:19 [+] Status code: 200
+2022/11/05 07:47:20 [+] Status code: 200
+2022/11/05 07:47:20 [+] Status code: 200
+2022/11/05 07:47:21 [+] Status code: 200
+2022/11/05 07:47:21 [+] Status code: 200
+2022/11/05 07:47:21 Get "https://api-sell.wethenew.com/sell-nows?skip=0&take=50": Proxy responded with non 200 code: 403 Forbidden
+2022/11/05 07:47:22 [+] Status code: 200
+2022/11/05 07:47:22 [+] Status code: 200
+2022/11/05 07:47:23 [+] Status code: 200
+2022/11/05 07:47:23 [+] Status code: 200
+2022/11/05 07:47:24 [+] Status code: 200
+2022/11/05 08:20:54 Starting monitor...
+2022/11/05 08:20:54 CPU: 0%
+2022/11/05 08:20:54 Response status: 200 OK
+2022/11/05 08:20:55 [+] Status code: 200
+2022/11/05 08:20:55 [+] Status code: 200
+2022/11/05 08:20:56 [+] Status code: 200
+2022/11/05 08:20:56 [+] Status code: 200
+2022/11/05 08:20:57 [+] Status code: 200
+2022/11/05 08:23:28 Starting monitor...
+2022/11/05 08:23:28 CPU: 0%
+2022/11/05 08:23:29 Response status: 200 OK
+2022/11/05 08:23:29 [+] Status code: 200
+2022/11/05 08:23:30 [+] Status code: 200
+2022/11/05 08:23:30 [+] Status code: 200
+2022/11/05 08:23:31 [+] Status code: 200
+2022/11/05 08:23:31 [+] Status code: 200
+2022/11/05 08:23:31 [+] Status code: 200
+2022/11/05 08:23:32 [+] Status code: 200
+2022/11/05 08:23:32 [+] Status code: 200
+2022/11/05 08:23:33 [+] Status code: 200
+2022/11/05 08:23:33 [+] Status code: 200
+2022/11/05 08:23:34 [+] Status code: 200
+2022/11/05 08:24:02 Starting monitor...
+2022/11/05 08:24:02 CPU: 0%
+2022/11/05 08:24:03 Response status: 200 OK
+2022/11/05 08:25:16 Starting monitor...
+2022/11/05 08:25:16 CPU: 0%
+2022/11/05 08:25:16 Response status: 200 OK
+2022/11/05 08:34:25 Starting monitor...
+2022/11/05 08:34:25 CPU: 0%
+2022/11/05 08:34:26 Response status: 200 OK
+2022/11/05 08:34:31 Starting monitor...
+2022/11/05 08:34:31 CPU: 0%
+2022/11/05 08:34:32 Response status: 200 OK
+2022/11/05 08:36:00 Starting monitor...
+2022/11/05 08:36:00 CPU: 0%
+2022/11/05 08:36:00 Response status: 200 OK
+2022/11/05 08:37:33 Starting monitor...
+2022/11/05 08:37:33 CPU: 2.5%
+2022/11/05 08:37:33 Response status: 200 OK
+2022/11/05 08:37:58 Starting monitor...
+2022/11/05 08:37:58 CPU: 0%
+2022/11/05 08:37:58 Response status: 200 OK
+2022/11/05 08:41:44 Starting monitor...
+2022/11/05 08:41:44 CPU: 0%
+2022/11/05 08:41:44 Response status: 200 OK
+2022/11/05 08:41:57 Starting monitor...
+2022/11/05 08:41:57 CPU: 0%
+2022/11/05 08:41:58 Response status: 200 OK
+2022/11/05 08:44:57 Starting monitor...
+2022/11/05 08:44:57 CPU: 0%
+2022/11/05 08:44:57 Response status: 200 OK
+2022/11/05 08:45:03 Starting monitor...
+2022/11/05 08:45:03 CPU: 2.6%
+2022/11/05 08:45:04 Response status: 200 OK
+2022/11/05 08:47:10 Starting monitor...
+2022/11/05 08:47:10 CPU: 0%
+2022/11/05 08:47:11 Response status: 200 OK
+2022/11/05 08:52:14 Starting monitor...
+2022/11/05 08:52:14 CPU: 0%
+2022/11/05 08:52:15 Response status: 200 OK
+2022/11/05 08:53:08 Starting monitor...
+2022/11/05 08:53:08 CPU: 0%
+2022/11/05 08:53:08 Response status: 200 OK
+2022/11/05 08:53:23 Starting monitor...
+2022/11/05 08:53:23 CPU: 0%
+2022/11/05 08:53:24 Response status: 200 OK
+2022/11/05 08:59:34 Starting monitor...
+2022/11/05 08:59:34 CPU: 0%
+2022/11/05 08:59:35 Response status: 200 OK
+2022/11/05 09:00:38 Starting monitor...
+2022/11/05 09:00:38 CPU: 0%
+2022/11/05 09:00:39 Response status: 200 OK
+2022/11/05 09:00:50 Starting monitor...
+2022/11/05 09:00:50 CPU: 0%
+2022/11/05 09:00:50 Response status: 200 OK
+2022/11/05 09:02:17 Starting monitor...
+2022/11/05 09:02:17 CPU: 0%
+2022/11/05 09:02:17 Response status: 200 OK
+2022/11/05 09:03:11 Starting monitor...
+2022/11/05 09:03:11 CPU: 0%
+2022/11/05 09:03:11 Response status: 403 Forbidden
+2022/11/05 09:03:11 Error unmarshalling json:  invalid character '<' looking for beginning of value
+2022/11/05 09:05:19 Starting monitor...
+2022/11/05 09:05:19 CPU: 0%
+2022/11/05 09:05:19 Response status: 200 OK
+2022/11/05 09:05:37 Starting monitor...
+2022/11/05 09:05:37 CPU: 0%
+2022/11/05 09:05:38 Response status: 200 OK
+2022/11/05 09:06:11 Starting monitor...
+2022/11/05 09:06:11 CPU: 0%
+2022/11/05 09:06:11 Response status: 403 Forbidden
+2022/11/05 09:06:11 Error unmarshalling json:  invalid character '<' looking for beginning of value
+2022/11/05 09:06:33 Starting monitor...
+2022/11/05 09:06:33 CPU: 2.8%
+2022/11/05 09:06:33 Response status: 200 OK
+2022/11/05 09:07:26 Starting monitor...
+2022/11/05 09:07:26 CPU: 0%
+2022/11/05 09:07:27 Response status: 200 OK
+2022/11/05 09:12:57 Starting monitor...
+2022/11/05 09:12:57 CPU: 0%
+2022/11/05 09:12:58 Response status: 200 OK
