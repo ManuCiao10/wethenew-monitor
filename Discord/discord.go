@@ -24,7 +24,7 @@ var client = &http.Client{
 }
 
 func Webhook(new_id data.ID, idx int) {
-	var webhookURL = os.Getenv("DISCOORD_HOLDING")
+	var webhookURL = os.Getenv("DISCORD_WEBHOOK_URL_TEST")
 	n_size := len(new_id.Results[idx].SellNows)
 	var fields []data.Fields
 	for i := 0; i < n_size; i++ {

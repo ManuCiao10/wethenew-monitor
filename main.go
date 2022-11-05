@@ -15,6 +15,7 @@ import (
 	"github.com/corpix/uarand"
 	"github.com/joho/godotenv"
 	"github.com/struCoder/pidusage"
+	
 )
 
 func init() {
@@ -22,6 +23,8 @@ func init() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	CreateLogFile()
+	log.Print("Starting monitor...")
 }
 
 func GetProducts() data.Info {
@@ -62,25 +65,27 @@ func GetProducts() data.Info {
 	return result
 }
 
-func CreateFile() {
+func CreateLogFile() {
 	f, err := os.OpenFile("logfile", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
 	log.SetOutput(f)
-
 }
 
 func main() {
-	CreateFile()
-	log.Print("Starting monitor...")
 	var pid = os.Getpid()
 	sysInfo, _ := pidusage.GetStat(pid)
-	log.Printf("CPU: %v%%\n", sysInfo.CPU)
+
+	log.Printf("[+] CPU: %v%%\n", sysInfo.CPU)
 	products := GetProducts()
 	monitor.MonitorProducts(products)
-
 }
 
-//----------IMPROVEMENT----------------
-//restart monioring after crash
+/*
+********IMPROVEMENT********
+-Caching response
+-Autorestart monioring after crash
+
+*/
+

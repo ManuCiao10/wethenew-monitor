@@ -63,6 +63,7 @@ func SaveSlice(class data.Info) []int {
 
 	for _, v := range class.Results {
 		slice = append(slice, v.ID)
+		
 	}
 	return slice
 }

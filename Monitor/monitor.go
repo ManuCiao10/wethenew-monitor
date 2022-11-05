@@ -2,9 +2,9 @@ package monitor
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
-	// "os"
 	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
@@ -12,10 +12,23 @@ import (
 
 	http "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
+	"github.com/patrickmn/go-cache"
 )
 
+func Time() string {
+	date := time.Now().Format("15:04:05")
+	time := time.Now().UnixNano() / int64(time.Millisecond)
+	time_final := fmt.Sprintf("%s.%d", date, time%1000)
+	return time_final
+}
+
 func MonitorProducts(class data.Info) {
-	Slice := discord.SaveSlice(class)
+	c := cache.New(cache.NoExpiration, cache.NoExpiration)
+	for _, v := range class.Results {
+		c.Set(fmt.Sprintf("%d", v.ID), v.ID, cache.NoExpiration)
+	}
+	// c.Delete(fmt.Sprintf("%d",1691)) For testing
+	fmt.Print("Cache: ", c.Items())
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	for {
 		options := []tls_client.HttpClientOption{
@@ -24,11 +37,12 @@ func MonitorProducts(class data.Info) {
 			tls_client.WithNotFollowRedirects(),
 			tls_client.WithProxyUrl(discord.GetProxy()),
 		}
-		time.Sleep(time.Duration(10) * time.Second)
+
 		client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 		if err != nil {
 			log.Print(err)
 		}
+
 		req, err := http.NewRequest("GET", url, nil)
 		if err != nil {
 			log.Println(err)
@@ -44,14 +58,13 @@ func MonitorProducts(class data.Info) {
 				"user-agent",
 			},
 		}
-		time.Sleep(time.Duration(10) * time.Second)
+		time.Sleep(time.Duration(3) * time.Second)
 		resp, err := client.Do(req)
 		if err != nil {
 			log.Println(err)
 			continue
 		}
-		log.Printf("Status code: %d\n", resp.StatusCode)
-
+		fmt.Printf("[%s] Status code: <|%d|> \n", Time(), resp.StatusCode)
 		body, _ := io.ReadAll(resp.Body)
 		_ = resp.Body.Close()
 		var new_id data.ID
@@ -59,11 +72,10 @@ func MonitorProducts(class data.Info) {
 			log.Println(err)
 		}
 		for idx, v := range new_id.Results {
-			if !discord.Contains(Slice, v.ID) {
-				log.Print("New product found!")
-				Slice = append(Slice, v.ID)
+			if _, found := c.Get(fmt.Sprintf("%d", v.ID)); !found {
+
+				c.Set(fmt.Sprintf("%d", v.ID), v.ID, cache.NoExpiration)
 				discord.Webhook(new_id, idx)
-				continue
 			}
 		}
 	}
