@@ -58,7 +58,7 @@ func MonitorProducts(class data.Info) {
 				"user-agent",
 			},
 		}
-		time.Sleep(time.Duration(3) * time.Second)
+		// time.Sleep(time.Duration(3) * time.Second)
 		resp, err := client.Do(req)
 		if err != nil {
 			log.Println(err)
