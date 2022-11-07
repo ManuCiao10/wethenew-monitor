@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/ManuCiao10/wethenew-monitor/data"
+
 )
 
 const (
@@ -21,6 +22,13 @@ var cookieJar, _ = cookiejar.New(nil)
 
 var client = &http.Client{
 	Jar: cookieJar,
+}
+
+func Time() string {
+	date := time.Now().Format("15:04:05")
+	time := time.Now().UnixNano() / int64(time.Millisecond)
+	time_final := fmt.Sprintf("%s.%d", date, time%1000)
+	return time_final
 }
 
 func Webhook(new_id data.ID, idx int) {
@@ -34,7 +42,6 @@ func Webhook(new_id data.ID, idx int) {
 			Inline: true,
 		})
 	}
-	time := time.Now().Format("15:04:05")
 	payload := &data.Top{
 		Username:  "Wethenew Monitor",
 		AvatarURL: Image_URL,
@@ -50,7 +57,7 @@ func Webhook(new_id data.ID, idx int) {
 				},
 				Footer: data.Footer{
 					IconURL: Image_URL,
-					Text:    "Wethenew | Holding-Lab " + time,
+					Text:    "Wethenew | Holding-Lab " + Time(),
 				},
 			},
 		},

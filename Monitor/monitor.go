@@ -27,7 +27,7 @@ func MonitorProducts(class data.Info) {
 	for _, v := range class.Results {
 		c.Set(fmt.Sprintf("%d", v.ID), v.ID, cache.NoExpiration)
 	}
-	// c.Delete(fmt.Sprintf("%d",1691)) For testing
+	
 	fmt.Print("Cache: ", c.Items())
 	url := "https://api-sell.wethenew.com/sell-nows?skip=0&take=50"
 	options := []tls_client.HttpClientOption{
@@ -36,7 +36,7 @@ func MonitorProducts(class data.Info) {
 		tls_client.WithNotFollowRedirects(),
 		tls_client.WithProxyUrl(discord.GetProxy()),
 	}
-
+	
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
 	if err != nil {
 		log.Print(err)
@@ -56,22 +56,23 @@ func MonitorProducts(class data.Info) {
 		},
 	}
 	for {
-		// time.Sleep(time.Duration(3) * time.Second)
+		// time.Sleep(time.Duration(5) * time.Second)
 		resp, err := client.Do(req)
 		if err != nil {
 			log.Println(err)
 			continue
 		}
-		fmt.Printf("[+] %s Status code: <|%d|> \n", Time(), resp.StatusCode)
+		fmt.Printf("[+] Status: <|%d|> %s\n", resp.StatusCode, Time())
 		body, _ := io.ReadAll(resp.Body)
 		_ = resp.Body.Close()
 		var new_id data.ID
 		if err := json.Unmarshal(body, &new_id); err != nil {
 			log.Println(err)
 		}
+		// c.Delete(fmt.Sprintf("%d",6586))
 		for idx, v := range new_id.Results {
 			if _, found := c.Get(fmt.Sprintf("%d", v.ID)); !found {
-
+				log.Print("New product: ", v.ID)
 				c.Set(fmt.Sprintf("%d", v.ID), v.ID, cache.NoExpiration)
 				discord.Webhook(new_id, idx)
 			}
